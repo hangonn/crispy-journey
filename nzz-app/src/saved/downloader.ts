@@ -1,7 +1,6 @@
-
-import * as FileSystem from 'expo-file-system/legacy';
-import { ArticleManifest, ManifestFile, absoluteFileUrl } from './manifest';
-import { MAX_SAVED_ARTICLES } from '../config';
+import * as FileSystem from "expo-file-system/legacy";
+import { ArticleManifest, ManifestFile, absoluteFileUrl } from "./manifest";
+import { MAX_SAVED_ARTICLES } from "../config";
 
 export interface DownloadProgress {
   articleId: string;
@@ -11,7 +10,7 @@ export interface DownloadProgress {
   totalBytes: number;
   downloadedBytes: number;
   currentFile?: string;
-  status: 'downloading' | 'completed' | 'failed' | 'cancelled';
+  status: "downloading" | "completed" | "failed" | "cancelled";
   error?: string;
 }
 
@@ -20,7 +19,7 @@ type ProgressCallback = (progress: DownloadProgress) => void;
 const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 1000;
 
-const SAVED_DIR = 'saved-articles/';
+const SAVED_DIR = "saved-articles/";
 
 /**
  * Downloads that are running right now, so the Saved screen can list them and a second tap
@@ -76,7 +75,11 @@ async function runDownload(
   let completedFiles = 0;
   let downloadedBytes = 0;
 
-  const report = (status: DownloadProgress['status'], currentFile?: string, error?: string) => {
+  const report = (
+    status: DownloadProgress["status"],
+    currentFile?: string,
+    error?: string,
+  ) => {
     const progress: DownloadProgress = {
       articleId,
       version,
@@ -93,25 +96,28 @@ async function runDownload(
   };
 
   const checkAbort = () => {
-    if (abortSignal?.aborted) throw new Error('Download cancelled');
+    if (abortSignal?.aborted) throw new Error("Download cancelled");
   };
 
   async function downloadFile(file: ManifestFile, attempt = 0): Promise<void> {
     checkAbort();
 
     const filePath = `${tempDir}${file.path}`;
-    const fileDir = filePath.substring(0, filePath.lastIndexOf('/'));
+    const fileDir = filePath.substring(0, filePath.lastIndexOf("/"));
     await FileSystem.makeDirectoryAsync(fileDir, { intermediates: true });
 
-    report('downloading', file.path);
+    report("downloading", file.path);
 
     try {
-      const result = await FileSystem.downloadAsync(absoluteFileUrl(file.url), filePath);
+      const result = await FileSystem.downloadAsync(
+        absoluteFileUrl(file.url),
+        filePath,
+      );
       if (result.status !== 200) throw new Error(`HTTP ${result.status}`);
 
       completedFiles += 1;
       downloadedBytes += file.bytes;
-      report('downloading', file.path);
+      report("downloading", file.path);
     } catch (error) {
       if (attempt < MAX_RETRIES && !abortSignal?.aborted) {
         await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
@@ -130,25 +136,38 @@ async function runDownload(
     // Verify every file is there before the copy counts as saved.
     for (const file of manifest.files) {
       const info = await FileSystem.getInfoAsync(`${tempDir}${file.path}`);
-      if (!info.exists) throw new Error(`Missing file after download: ${file.path}`);
+      if (!info.exists)
+        throw new Error(`Missing file after download: ${file.path}`);
     }
 
     // Our own bookkeeping, written into the temporary copy so the move stays atomic.
     await FileSystem.writeAsStringAsync(
       `${tempDir}meta.json`,
-      JSON.stringify({ articleId, title: manifest.title, version, savedAt: Date.now() }),
+      JSON.stringify({
+        articleId,
+        title: manifest.title,
+        version,
+        savedAt: Date.now(),
+      }),
     );
 
-    await FileSystem.makeDirectoryAsync(`${FileSystem.documentDirectory}${SAVED_DIR}`, { intermediates: true });
+    await FileSystem.makeDirectoryAsync(
+      `${FileSystem.documentDirectory}${SAVED_DIR}`,
+      { intermediates: true },
+    );
     await FileSystem.moveAsync({ from: tempDir, to: finalDir });
 
-    report('completed');
+    report("completed");
     await enforceMaxSavedArticles();
 
     return finalDir;
   } catch (error) {
     await FileSystem.deleteAsync(tempDir, { idempotent: true }).catch(() => {});
-    report('failed', undefined, error instanceof Error ? error.message : 'Unknown error');
+    report(
+      "failed",
+      undefined,
+      error instanceof Error ? error.message : "Unknown error",
+    );
     throw error;
   }
 }
@@ -174,10 +193,15 @@ export async function enforceMaxSavedArticles(): Promise<void> {
       if (!dirInfo.exists || !dirInfo.isDirectory) continue;
 
       const meta = await readMeta(path);
-      const articleId = meta?.articleId ?? entry.replace(/-[0-9a-f]{8}$/, '');
-      const savedAt = meta?.savedAt ?? (dirInfo.modificationTime ? dirInfo.modificationTime * 1000 : 0);
+      const articleId = meta?.articleId ?? entry.replace(/-[0-9a-f]{8}$/, "");
+      const savedAt =
+        meta?.savedAt ??
+        (dirInfo.modificationTime ? dirInfo.modificationTime * 1000 : 0);
 
-      const group = byArticle.get(articleId) ?? { paths: [], savedAt: Number.POSITIVE_INFINITY };
+      const group = byArticle.get(articleId) ?? {
+        paths: [],
+        savedAt: Number.POSITIVE_INFINITY,
+      };
       group.paths.push(path);
       group.savedAt = Math.min(group.savedAt, savedAt);
       byArticle.set(articleId, group);
@@ -185,7 +209,9 @@ export async function enforceMaxSavedArticles(): Promise<void> {
 
     if (byArticle.size <= MAX_SAVED_ARTICLES) return;
 
-    const ordered = [...byArticle.values()].sort((a, b) => a.savedAt - b.savedAt);
+    const ordered = [...byArticle.values()].sort(
+      (a, b) => a.savedAt - b.savedAt,
+    );
     for (const group of ordered.slice(0, byArticle.size - MAX_SAVED_ARTICLES)) {
       for (const path of group.paths) {
         await FileSystem.deleteAsync(path, { idempotent: true });
@@ -196,7 +222,9 @@ export async function enforceMaxSavedArticles(): Promise<void> {
   }
 }
 
-async function readMeta(articlePath: string): Promise<{ articleId: string; savedAt: number } | null> {
+async function readMeta(
+  articlePath: string,
+): Promise<{ articleId: string; savedAt: number } | null> {
   try {
     const metaPath = `${articlePath}meta.json`;
     const info = await FileSystem.getInfoAsync(metaPath);
@@ -208,7 +236,10 @@ async function readMeta(articlePath: string): Promise<{ articleId: string; saved
 }
 
 /** Cancel an in-progress download by removing its temporary directory. */
-export async function cancelDownload(articleId: string, version: string): Promise<void> {
+export async function cancelDownload(
+  articleId: string,
+  version: string,
+): Promise<void> {
   const tempDir = `${FileSystem.cacheDirectory}article-${articleId}-${version}-tmp/`;
   await FileSystem.deleteAsync(tempDir, { idempotent: true });
 }

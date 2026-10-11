@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { Stack } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { cleanupStaleTempDirs } from '../saved/storage';
+import { useEffect } from "react";
+import { Stack } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { cleanupStaleTempDirs } from "../saved/storage";
 
 export default function RootLayout() {
   // A download that was killed with the app leaves a temporary folder behind. Remove it on
@@ -17,9 +17,9 @@ export default function RootLayout() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="index" options={{ presentation: 'card' }} />
-        <Stack.Screen name="article/[id]" options={{ presentation: 'card' }} />
-        <Stack.Screen name="saved" options={{ presentation: 'card' }} />
+        <Stack.Screen name="index" options={{ presentation: "card" }} />
+        <Stack.Screen name="article/[id]" options={{ presentation: "card" }} />
+        <Stack.Screen name="saved" options={{ presentation: "card" }} />
       </Stack>
     </SafeAreaProvider>
   );

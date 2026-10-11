@@ -1,15 +1,27 @@
-
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, RefreshControl, ScrollView, TouchableOpacity, AppState, useWindowDimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
-import { NewsWebView, NewsWebViewHandle, PageStatus } from '../webview/NewsWebView';
-import { LoadingView } from '../components/LoadingView';
-import { ErrorView } from '../components/ErrorView';
-import { RecentlyReadStrip } from '../components/RecentlyReadStrip';
-import { useFetchConsent, useConsentString } from '../state/consent';
-import { useAddReadArticle } from '../state/store';
-import { initializeTracker } from '../tracking/trackerManager';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+  AppState,
+  useWindowDimensions,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
+import {
+  NewsWebView,
+  NewsWebViewHandle,
+  PageStatus,
+} from "../webview/NewsWebView";
+import { LoadingView } from "../components/LoadingView";
+import { ErrorView } from "../components/ErrorView";
+import { RecentlyReadStrip } from "../components/RecentlyReadStrip";
+import { useFetchConsent, useConsentString } from "../state/consent";
+import { useAddReadArticle } from "../state/store";
+import { initializeTracker } from "../tracking/trackerManager";
 
 export function FrontScreen() {
   const webviewRef = useRef<NewsWebViewHandle>(null);
@@ -17,7 +29,7 @@ export function FrontScreen() {
   const webviewOffsetRef = useRef(0);
 
   const [pageHeight, setPageHeight] = useState(0);
-  const [status, setStatus] = useState<PageStatus>('loading');
+  const [status, setStatus] = useState<PageStatus>("loading");
   const [error, setError] = useState<Error | null>(null);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -33,8 +45,8 @@ export function FrontScreen() {
   // Ask for consent at launch and each time the app comes back to the foreground.
   useEffect(() => {
     fetchConsent();
-    const subscription = AppState.addEventListener('change', (next) => {
-      if (next === 'active') fetchConsent();
+    const subscription = AppState.addEventListener("change", (next) => {
+      if (next === "active") fetchConsent();
     });
     return () => subscription.remove();
   }, [fetchConsent]);
@@ -48,28 +60,35 @@ export function FrontScreen() {
     const match = path.match(/\/article\/([^?]+)(?:\?(.*))?/);
     if (!match) return;
     const articleId = match[1];
-    const queryString = match[2] || '';
-    router.push(queryString ? `/article/${articleId}?${queryString}` : `/article/${articleId}`);
+    const queryString = match[2] || "";
+    router.push(
+      queryString
+        ? `/article/${articleId}?${queryString}`
+        : `/article/${articleId}`,
+    );
   }, []);
 
   const handleScrollTo = useCallback((offset: number) => {
-    scrollViewRef.current?.scrollTo({ y: webviewOffsetRef.current + offset, animated: true });
+    scrollViewRef.current?.scrollTo({
+      y: webviewOffsetRef.current + offset,
+      animated: true,
+    });
   }, []);
 
   const handleReady = useCallback(() => {
-    setStatus('ready');
+    setStatus("ready");
     setError(null);
     setRefreshing(false);
   }, []);
 
   const handleError = useCallback((err: Error) => {
-    setStatus('error');
+    setStatus("error");
     setError(err);
     setRefreshing(false);
   }, []);
 
   const reload = useCallback(() => {
-    setStatus('loading');
+    setStatus("loading");
     setError(null);
     webviewRef.current?.reload();
   }, []);
@@ -80,10 +99,13 @@ export function FrontScreen() {
   }, [reload]);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>NZZ</Text>
-        <TouchableOpacity style={styles.savedButton} onPress={() => router.push('/saved')}>
+        <TouchableOpacity
+          style={styles.savedButton}
+          onPress={() => router.push("/saved")}
+        >
           <Text style={styles.savedButtonText}>Saved</Text>
         </TouchableOpacity>
       </View>
@@ -93,12 +115,19 @@ export function FrontScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#2c32bd']} tintColor="#2c32bd" />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["#2c32bd"]}
+            tintColor="#2c32bd"
+          />
         }
         scrollEventThrottle={16}
         nestedScrollEnabled
       >
-        <RecentlyReadStrip onPressArticle={(id) => router.push(`/article/${id}`)} />
+        <RecentlyReadStrip
+          onPressArticle={(id) => router.push(`/article/${id}`)}
+        />
 
         <View
           style={[styles.webviewSlot, { height: slotHeight }]}
@@ -118,15 +147,18 @@ export function FrontScreen() {
             onError={handleError}
           />
 
-          {status === 'loading' && (
+          {status === "loading" && (
             <View style={styles.overlay} pointerEvents="none">
               <LoadingView message="Loading front page…" />
             </View>
           )}
 
-          {status === 'error' && (
+          {status === "error" && (
             <View style={styles.overlay}>
-              <ErrorView message={error?.message || 'Failed to load the front page.'} onRetry={reload} />
+              <ErrorView
+                message={error?.message || "Failed to load the front page."}
+                onRetry={reload}
+              />
             </View>
           )}
         </View>
@@ -142,33 +174,33 @@ export function FrontScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#dee2e6',
-    backgroundColor: '#fff',
+    borderBottomColor: "#dee2e6",
+    backgroundColor: "#fff",
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: '700',
-    color: '#121212',
+    fontWeight: "700",
+    color: "#121212",
   },
   savedButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    backgroundColor: '#2c32bd',
+    backgroundColor: "#2c32bd",
     borderRadius: 6,
   },
   savedButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   scrollView: {
     flex: 1,
@@ -177,10 +209,10 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   webviewSlot: {
-    width: '100%',
+    width: "100%",
   },
   overlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     right: 0,
     bottom: 0,
@@ -188,13 +220,13 @@ const styles = StyleSheet.create({
   },
   footer: {
     padding: 16,
-    alignItems: 'center',
+    alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: '#dee2e6',
+    borderTopColor: "#dee2e6",
     marginTop: 16,
   },
   footerText: {
     fontSize: 12,
-    color: '#868686',
+    color: "#868686",
   },
 });

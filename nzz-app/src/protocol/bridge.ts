@@ -1,6 +1,5 @@
-
-import { parsePageMessage, PageMessage } from './types';
-import { handleTrackerMessage } from '../tracking/trackerManager';
+import { parsePageMessage, PageMessage } from "./types";
+import { handleTrackerMessage } from "../tracking/trackerManager";
 
 /**
  * Route one raw message from a page.
@@ -15,7 +14,7 @@ export function handleWebViewMessage(rawMessage: string): PageMessage | null {
 
   try {
     const parsed = JSON.parse(rawMessage);
-    if (parsed && typeof parsed === 'object' && 'command' in parsed) {
+    if (parsed && typeof parsed === "object" && "command" in parsed) {
       handleTrackerMessage(rawMessage);
     }
   } catch {

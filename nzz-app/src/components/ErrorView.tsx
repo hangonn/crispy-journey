@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface ErrorViewProps {
   message: string;
@@ -32,59 +31,59 @@ export function ErrorView({ message, onRetry, onDismiss }: ErrorViewProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 24,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   content: {
-    alignItems: 'center',
+    alignItems: "center",
     maxWidth: 300,
   },
   title: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#121212',
+    fontWeight: "600",
+    color: "#121212",
     marginBottom: 8,
   },
   message: {
     fontSize: 16,
-    color: '#434343',
-    textAlign: 'center',
+    color: "#434343",
+    textAlign: "center",
     marginBottom: 24,
     lineHeight: 24,
   },
   buttons: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 12,
-    width: '100%',
+    width: "100%",
   },
   retryButton: {
     flex: 1,
-    backgroundColor: '#2c32bd',
+    backgroundColor: "#2c32bd",
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   retryButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   dismissButton: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: '#dee2e6',
+    borderColor: "#dee2e6",
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   dismissButtonText: {
-    color: '#2c32bd',
+    color: "#2c32bd",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

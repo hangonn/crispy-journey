@@ -1,7 +1,12 @@
-
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { useReadIds, useTitles } from '../state/store';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { useReadIds, useTitles } from "../state/store";
 
 interface RecentlyReadStripProps {
   onPressArticle: (articleId: string) => void;
@@ -50,13 +55,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#dee2e6',
-    backgroundColor: '#fff',
+    borderBottomColor: "#dee2e6",
+    backgroundColor: "#fff",
   },
   title: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#121212',
+    fontWeight: "600",
+    color: "#121212",
     marginBottom: 8,
   },
   listContent: {
@@ -66,15 +71,15 @@ const styles = StyleSheet.create({
   item: {
     width: 160,
     padding: 12,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#dee2e6',
+    borderColor: "#dee2e6",
   },
   itemTitle: {
     fontSize: 13,
-    fontWeight: '500',
-    color: '#121212',
+    fontWeight: "500",
+    color: "#121212",
     lineHeight: 18,
   },
 });

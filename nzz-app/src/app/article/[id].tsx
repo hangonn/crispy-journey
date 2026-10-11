@@ -1,6 +1,6 @@
-import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-import { ArticleScreen } from '../../screens/ArticleScreen';
+import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, View } from "react-native";
+import { ArticleScreen } from "../../screens/ArticleScreen";
 
 export default function ArticleRoute() {
   const { id, ...rest } = useLocalSearchParams<{ id: string }>();
@@ -9,7 +9,7 @@ export default function ArticleRoute() {
   const queryString = Object.entries(rest)
     .filter(([, value]) => value !== undefined)
     .map(([key, value]) => `${key}=${value}`)
-    .join('&');
+    .join("&");
 
   return (
     <View style={styles.container}>
@@ -21,6 +21,6 @@ export default function ArticleRoute() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });

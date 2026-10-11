@@ -1,32 +1,53 @@
-
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, AppState, Alert } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
-import { NewsWebView, NewsWebViewHandle, PageStatus } from '../webview/NewsWebView';
-import { LoadingView } from '../components/LoadingView';
-import { ErrorView } from '../components/ErrorView';
-import { ArticleHeader } from '../components/ArticleHeader';
-import { useConsentString, useFetchConsent } from '../state/consent';
-import { useAddReadArticle, useToggleBookmark, useSetArticleTitle } from '../state/store';
-import { initializeTracker, trackArticleRead } from '../tracking/trackerManager';
-import { isArticleSaved, getSavedArticleVersion, getSavedArticleUrl } from '../saved/storage';
-import { fetchManifest, ArticleManifest } from '../saved/manifest';
-import { downloadArticle, cancelDownload } from '../saved/downloader';
-import { checkForUpdate } from '../saved/updateChecker';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  AppState,
+  Alert,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { router } from "expo-router";
+import {
+  NewsWebView,
+  NewsWebViewHandle,
+  PageStatus,
+} from "../webview/NewsWebView";
+import { LoadingView } from "../components/LoadingView";
+import { ErrorView } from "../components/ErrorView";
+import { ArticleHeader } from "../components/ArticleHeader";
+import { useConsentString, useFetchConsent } from "../state/consent";
+import {
+  useAddReadArticle,
+  useToggleBookmark,
+  useSetArticleTitle,
+} from "../state/store";
+import {
+  initializeTracker,
+  trackArticleRead,
+} from "../tracking/trackerManager";
+import {
+  isArticleSaved,
+  getSavedArticleVersion,
+  getSavedArticleUrl,
+} from "../saved/storage";
+import { fetchManifest, ArticleManifest } from "../saved/manifest";
+import { downloadArticle, cancelDownload } from "../saved/downloader";
+import { checkForUpdate } from "../saved/updateChecker";
 
 interface ArticleScreenProps {
   articleId: string;
   queryString?: string;
 }
 
-type UpdateStatus = 'idle' | 'downloading' | 'ready' | 'failed';
+type UpdateStatus = "idle" | "downloading" | "ready" | "failed";
 
 export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
   const webviewRef = useRef<NewsWebViewHandle>(null);
   const insets = useSafeAreaInsets();
 
-  const [status, setStatus] = useState<PageStatus>('loading');
+  const [status, setStatus] = useState<PageStatus>("loading");
   const [error, setError] = useState<Error | null>(null);
 
   // The header floats over the page; the page reserves the space it covers.
@@ -40,10 +61,16 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
 
   // Save / update state
   const [isSaving, setIsSaving] = useState(false);
-  const [saveProgress, setSaveProgress] = useState<number | undefined>(undefined);
-  const [updateStatus, setUpdateStatus] = useState<UpdateStatus>('idle');
-  const [updateManifest, setUpdateManifest] = useState<ArticleManifest | null>(null);
-  const [updateProgress, setUpdateProgress] = useState<number | undefined>(undefined);
+  const [saveProgress, setSaveProgress] = useState<number | undefined>(
+    undefined,
+  );
+  const [updateStatus, setUpdateStatus] = useState<UpdateStatus>("idle");
+  const [updateManifest, setUpdateManifest] = useState<ArticleManifest | null>(
+    null,
+  );
+  const [updateProgress, setUpdateProgress] = useState<number | undefined>(
+    undefined,
+  );
 
   const saveAbortRef = useRef<AbortController | null>(null);
   const savingVersionRef = useRef<string | null>(null);
@@ -60,8 +87,8 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
   // Consent at launch and on foreground.
   useEffect(() => {
     fetchConsent();
-    const subscription = AppState.addEventListener('change', (next) => {
-      if (next === 'active') fetchConsent();
+    const subscription = AppState.addEventListener("change", (next) => {
+      if (next === "active") fetchConsent();
     });
     return () => subscription.remove();
   }, [fetchConsent]);
@@ -105,20 +132,24 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
     (async () => {
       const result = await checkForUpdate(articleId);
       if (cancelled) return;
-      if (!result.updateInfo.hasUpdate || !result.updateInfo.latestManifest) return;
+      if (!result.updateInfo.hasUpdate || !result.updateInfo.latestManifest)
+        return;
 
       const manifest = result.updateInfo.latestManifest;
       setUpdateManifest(manifest);
 
       // If the newer version is already on disk (a previous attempt finished), just offer it.
-      const alreadyDownloaded = await getSavedArticleUrl(articleId, manifest.version);
+      const alreadyDownloaded = await getSavedArticleUrl(
+        articleId,
+        manifest.version,
+      );
       if (cancelled) return;
       if (alreadyDownloaded) {
-        setUpdateStatus('ready');
+        setUpdateStatus("ready");
         return;
       }
 
-      setUpdateStatus('downloading');
+      setUpdateStatus("downloading");
       setUpdateProgress(0);
 
       const controller = new AbortController();
@@ -129,17 +160,19 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
           manifest,
           (progress) => {
             if (progress.totalFiles > 0) {
-              setUpdateProgress((progress.completedFiles / progress.totalFiles) * 100);
+              setUpdateProgress(
+                (progress.completedFiles / progress.totalFiles) * 100,
+              );
             }
           },
           controller.signal,
         );
         if (cancelled) return;
-        setUpdateStatus('ready');
+        setUpdateStatus("ready");
         setUpdateProgress(undefined);
       } catch {
         if (cancelled) return;
-        setUpdateStatus('failed');
+        setUpdateStatus("failed");
         setUpdateProgress(undefined);
       } finally {
         updateAbortRef.current = null;
@@ -155,8 +188,10 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
     const match = path.match(/\/article\/([^?]+)(?:\?(.*))?/);
     if (!match) return;
     const nextId = match[1];
-    const nextQuery = match[2] || '';
-    router.push(nextQuery ? `/article/${nextId}?${nextQuery}` : `/article/${nextId}`);
+    const nextQuery = match[2] || "";
+    router.push(
+      nextQuery ? `/article/${nextId}?${nextQuery}` : `/article/${nextId}`,
+    );
   }, []);
 
   const handleArticleRead = useCallback(
@@ -171,17 +206,17 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
   );
 
   const handleReady = useCallback(() => {
-    setStatus('ready');
+    setStatus("ready");
     setError(null);
   }, []);
 
   const handleError = useCallback((err: Error) => {
-    setStatus('error');
+    setStatus("error");
     setError(err);
   }, []);
 
   const reload = useCallback(() => {
-    setStatus('loading');
+    setStatus("loading");
     setError(null);
     webviewRef.current?.reload();
   }, []);
@@ -203,7 +238,9 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
         manifest,
         (progress) => {
           if (progress.totalFiles > 0) {
-            setSaveProgress((progress.completedFiles / progress.totalFiles) * 100);
+            setSaveProgress(
+              (progress.completedFiles / progress.totalFiles) * 100,
+            );
           }
         },
         controller.signal,
@@ -218,7 +255,12 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
       setIsSaving(false);
       setSaveProgress(undefined);
       if (!controller.signal.aborted) {
-        Alert.alert('Save failed', err instanceof Error ? err.message : 'The article could not be saved.');
+        Alert.alert(
+          "Save failed",
+          err instanceof Error
+            ? err.message
+            : "The article could not be saved.",
+        );
       }
     } finally {
       saveAbortRef.current = null;
@@ -229,7 +271,8 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
   const handleCancelSave = useCallback(async () => {
     saveAbortRef.current?.abort();
     // Remove anything the attempt left behind.
-    if (savingVersionRef.current) await cancelDownload(articleId, savingVersionRef.current);
+    if (savingVersionRef.current)
+      await cancelDownload(articleId, savingVersionRef.current);
     setIsSaving(false);
     setSaveProgress(undefined);
   }, [articleId]);
@@ -240,7 +283,7 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
     const url = await getSavedArticleUrl(articleId, updateManifest.version);
     setSavedVersion(updateManifest.version);
     setSavedUrl(url);
-    setUpdateStatus('idle');
+    setUpdateStatus("idle");
     setUpdateManifest(null);
     reload();
   }, [articleId, updateManifest, reload]);
@@ -248,14 +291,14 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
   const handleCancelUpdate = useCallback(async () => {
     updateAbortRef.current?.abort();
     if (updateManifest) await cancelDownload(articleId, updateManifest.version);
-    setUpdateStatus('idle');
+    setUpdateStatus("idle");
     setUpdateManifest(null);
     setUpdateProgress(undefined);
   }, [articleId, updateManifest]);
 
   // "Later" keeps the downloaded copy on disk; it only hides the banner.
   const handleDismissUpdate = useCallback(() => {
-    setUpdateStatus('idle');
+    setUpdateStatus("idle");
     setUpdateManifest(null);
     setUpdateProgress(undefined);
   }, []);
@@ -281,15 +324,18 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
         onError={handleError}
       />
 
-      {status === 'loading' && (
+      {status === "loading" && (
         <View style={styles.overlay}>
           <LoadingView message="Loading article…" />
         </View>
       )}
 
-      {status === 'error' && (
+      {status === "error" && (
         <View style={styles.overlay}>
-          <ErrorView message={error?.message || 'Failed to load the article.'} onRetry={reload} />
+          <ErrorView
+            message={error?.message || "Failed to load the article."}
+            onRetry={reload}
+          />
         </View>
       )}
 
@@ -305,24 +351,36 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
         onCancelSave={handleCancelSave}
       />
 
-      {updateStatus === 'ready' && (
+      {updateStatus === "ready" && (
         <View style={[styles.updateBanner, { bottom: insets.bottom + 12 }]}>
           <Text style={styles.updateText}>A newer version is ready.</Text>
-          <TouchableOpacity style={styles.updateButton} onPress={handleSwitchToUpdate}>
+          <TouchableOpacity
+            style={styles.updateButton}
+            onPress={handleSwitchToUpdate}
+          >
             <Text style={styles.updateButtonText}>Switch</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.updateDismiss} onPress={handleDismissUpdate}>
+          <TouchableOpacity
+            style={styles.updateDismiss}
+            onPress={handleDismissUpdate}
+          >
             <Text style={styles.updateDismissText}>Later</Text>
           </TouchableOpacity>
         </View>
       )}
 
-      {updateStatus === 'downloading' && (
+      {updateStatus === "downloading" && (
         <View style={[styles.updateBanner, { bottom: insets.bottom + 12 }]}>
           <Text style={styles.updateText}>
-            Downloading a newer version… {updateProgress !== undefined ? `${Math.round(updateProgress)}%` : ''}
+            Downloading a newer version…{" "}
+            {updateProgress !== undefined
+              ? `${Math.round(updateProgress)}%`
+              : ""}
           </Text>
-          <TouchableOpacity style={styles.updateDismiss} onPress={handleCancelUpdate}>
+          <TouchableOpacity
+            style={styles.updateDismiss}
+            onPress={handleCancelUpdate}
+          >
             <Text style={styles.updateDismissText}>Cancel</Text>
           </TouchableOpacity>
         </View>
@@ -334,49 +392,49 @@ export function ArticleScreen({ articleId, queryString }: ArticleScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   overlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   updateBanner: {
-    position: 'absolute',
+    position: "absolute",
     left: 12,
     right: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 10,
-    backgroundColor: '#121212',
+    backgroundColor: "#121212",
   },
   updateText: {
     flex: 1,
-    color: '#fff',
+    color: "#fff",
     fontSize: 14,
   },
   updateButton: {
     paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 6,
-    backgroundColor: '#2c32bd',
+    backgroundColor: "#2c32bd",
   },
   updateButtonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: "#fff",
+    fontWeight: "600",
   },
   updateDismiss: {
     paddingHorizontal: 8,
     paddingVertical: 6,
   },
   updateDismissText: {
-    color: '#fff',
+    color: "#fff",
     opacity: 0.8,
   },
 });

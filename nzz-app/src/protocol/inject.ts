@@ -1,9 +1,8 @@
-
-import { Platform } from 'react-native';
-import { SERVER_URL } from '../config';
+import { Platform } from "react-native";
+import { SERVER_URL } from "../config";
 
 export interface InjectParams {
-  pageType: 'front' | 'article';
+  pageType: "front" | "article";
   insets: { top: number; bottom: number };
   appVersion: string;
   appBuild: string;
@@ -21,7 +20,7 @@ export interface InjectParams {
  */
 export function getInjectedJavaScript(params: InjectParams): string {
   const { pageType, insets, appVersion, appBuild, articleId } = params;
-  const isArticle = pageType === 'article';
+  const isArticle = pageType === "article";
 
   return `
 (function () {
@@ -33,7 +32,7 @@ export function getInjectedJavaScript(params: InjectParams): string {
     appVersion: ${JSON.stringify(appVersion)},
     appBuild: ${JSON.stringify(appBuild)},
     os: ${JSON.stringify(Platform.OS)},
-    deviceType: ${JSON.stringify(Platform.OS === 'ios' ? 'phone' : 'phone')}
+    deviceType: ${JSON.stringify(Platform.OS === "ios" ? "phone" : "phone")}
   };
   window.__appReady = false;
 
@@ -85,7 +84,7 @@ export function getInjectedJavaScript(params: InjectParams): string {
     pullArmed = false;
   }, { passive: true });
   `
-      : ''
+      : ""
   }
 
   // --- Links --------------------------------------------------------------
@@ -155,7 +154,7 @@ export function getInjectedJavaScript(params: InjectParams): string {
   });
 
   // --- End of the article text -------------------------------------------
-  var articleId = ${JSON.stringify(articleId ?? '')};
+  var articleId = ${JSON.stringify(articleId ?? "")};
   var readReported = false;
 
   function insetValue(name) {
@@ -190,7 +189,7 @@ export function getInjectedJavaScript(params: InjectParams): string {
   window.addEventListener('resize', checkEndOfText);
   setInterval(checkEndOfText, 400);
   `
-      : ''
+      : ""
   }
 })();
 true;
@@ -198,10 +197,14 @@ true;
 }
 
 /** Get the base URL for a page (front or article). */
-export function getPageUrl(page: 'front' | 'article', articleId?: string, queryString?: string): string {
-  let url = `${SERVER_URL}/${page === 'front' ? 'front' : 'article/' + articleId}`;
+export function getPageUrl(
+  page: "front" | "article",
+  articleId?: string,
+  queryString?: string,
+): string {
+  let url = `${SERVER_URL}/${page === "front" ? "front" : "article/" + articleId}`;
   if (queryString) {
-    url += '?' + queryString;
+    url += "?" + queryString;
   }
   return url;
 }

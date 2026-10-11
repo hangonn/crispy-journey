@@ -1,6 +1,5 @@
-
-import { fetchManifest, ArticleManifest } from './manifest';
-import { getSavedArticleVersion } from './storage';
+import { fetchManifest, ArticleManifest } from "./manifest";
+import { getSavedArticleVersion } from "./storage";
 
 export interface UpdateInfo {
   hasUpdate: boolean;
@@ -19,14 +18,16 @@ export interface UpdateCheckResult {
  * Check whether a saved article has a newer version on the server. A different `version`
  * value means the article changed.
  */
-export async function checkForUpdate(articleId: string): Promise<UpdateCheckResult> {
+export async function checkForUpdate(
+  articleId: string,
+): Promise<UpdateCheckResult> {
   try {
     const currentVersion = await getSavedArticleVersion(articleId);
     if (!currentVersion) {
       return {
         articleId,
-        updateInfo: { hasUpdate: false, currentVersion: '', latestVersion: '' },
-        error: 'Article not saved',
+        updateInfo: { hasUpdate: false, currentVersion: "", latestVersion: "" },
+        error: "Article not saved",
       };
     }
 
@@ -45,8 +46,8 @@ export async function checkForUpdate(articleId: string): Promise<UpdateCheckResu
   } catch (error) {
     return {
       articleId,
-      updateInfo: { hasUpdate: false, currentVersion: '', latestVersion: '' },
-      error: error instanceof Error ? error.message : 'Unknown error',
+      updateInfo: { hasUpdate: false, currentVersion: "", latestVersion: "" },
+      error: error instanceof Error ? error.message : "Unknown error",
     };
   }
 }

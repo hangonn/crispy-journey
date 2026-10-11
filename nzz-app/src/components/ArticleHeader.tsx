@@ -1,7 +1,19 @@
-
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useFontScale, useTheme, useSetFontScale, useSetTheme, useToggleBookmark, useIsBookmarked } from '../state/store';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import {
+  useFontScale,
+  useTheme,
+  useSetFontScale,
+  useSetTheme,
+  useToggleBookmark,
+  useIsBookmarked,
+} from "../state/store";
 
 interface ArticleHeaderProps {
   articleId: string;
@@ -45,7 +57,7 @@ export function ArticleHeader({
   };
 
   const handleThemeToggle = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -54,7 +66,12 @@ export function ArticleHeader({
       onLayout={(event) => onHeightChange?.(event.nativeEvent.layout.height)}
     >
       <View style={styles.header}>
-        <TouchableOpacity style={styles.button} onPress={onBack} activeOpacity={0.7} accessibilityLabel="Back">
+        <TouchableOpacity
+          style={styles.button}
+          onPress={onBack}
+          activeOpacity={0.7}
+          accessibilityLabel="Back"
+        >
           <Text style={styles.buttonText}>←</Text>
         </TouchableOpacity>
 
@@ -83,16 +100,18 @@ export function ArticleHeader({
           activeOpacity={0.7}
           accessibilityLabel="Toggle light or dark"
         >
-          <Text style={styles.buttonText}>{theme === 'light' ? '☀️' : '🌙'}</Text>
+          <Text style={styles.buttonText}>
+            {theme === "light" ? "☀️" : "🌙"}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => toggleBookmark(articleId)}
           activeOpacity={0.7}
-          accessibilityLabel={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
+          accessibilityLabel={isBookmarked ? "Remove bookmark" : "Bookmark"}
         >
-          <Text style={styles.buttonText}>{isBookmarked ? '★' : '☆'}</Text>
+          <Text style={styles.buttonText}>{isBookmarked ? "★" : "☆"}</Text>
         </TouchableOpacity>
 
         {isSaving ? (
@@ -105,7 +124,9 @@ export function ArticleHeader({
             <View style={styles.savingContent}>
               <ActivityIndicator size="small" color="#fff" />
               <Text style={styles.savingText}>
-                {saveProgress !== undefined ? `${Math.round(saveProgress)}%` : '…'}
+                {saveProgress !== undefined
+                  ? `${Math.round(saveProgress)}%`
+                  : "…"}
               </Text>
             </View>
           </TouchableOpacity>
@@ -114,9 +135,9 @@ export function ArticleHeader({
             style={[styles.button, isSaved && styles.buttonSaved]}
             onPress={onSavePress}
             activeOpacity={0.7}
-            accessibilityLabel={isSaved ? 'Saved' : 'Save for offline'}
+            accessibilityLabel={isSaved ? "Saved" : "Save for offline"}
           >
-            <Text style={styles.buttonText}>{isSaved ? '✓' : '💾'}</Text>
+            <Text style={styles.buttonText}>{isSaved ? "✓" : "💾"}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -126,54 +147,54 @@ export function ArticleHeader({
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     zIndex: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
     borderBottomWidth: 1,
-    borderBottomColor: '#dee2e6',
+    borderBottomColor: "#dee2e6",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 12,
     paddingVertical: 8,
     minHeight: 44,
   },
   controlGroup: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 4,
   },
   button: {
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 6,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
     minWidth: 36,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonSaved: {
-    backgroundColor: '#28a745',
+    backgroundColor: "#28a745",
   },
   buttonSaving: {
-    backgroundColor: '#2c32bd',
+    backgroundColor: "#2c32bd",
   },
   buttonText: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#121212',
+    fontWeight: "600",
+    color: "#121212",
   },
   savingContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
   },
   savingText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

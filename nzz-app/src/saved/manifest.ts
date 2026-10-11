@@ -1,5 +1,4 @@
-
-import { SERVER_URL } from '../config';
+import { SERVER_URL } from "../config";
 
 export interface ManifestFile {
   path: string;
@@ -21,15 +20,19 @@ export interface ArticleManifest {
  */
 export function absoluteFileUrl(url: string): string {
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(url)) return url;
-  const base = SERVER_URL.replace(/\/+$/, '');
-  return `${base}${url.startsWith('/') ? '' : '/'}${url}`;
+  const base = SERVER_URL.replace(/\/+$/, "");
+  return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
 /**
  * Fetch and validate the article manifest from the server.
  */
-export async function fetchManifest(articleId: string): Promise<ArticleManifest> {
-  const response = await fetch(`${SERVER_URL}/bundle/${articleId}/manifest.json`);
+export async function fetchManifest(
+  articleId: string,
+): Promise<ArticleManifest> {
+  const response = await fetch(
+    `${SERVER_URL}/bundle/${articleId}/manifest.json`,
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to fetch manifest: ${response.status}`);
@@ -38,8 +41,13 @@ export async function fetchManifest(articleId: string): Promise<ArticleManifest>
   const data = await response.json();
 
   // Validate the manifest structure
-  if (!data.articleId || !data.title || !data.version || !Array.isArray(data.files)) {
-    throw new Error('Invalid manifest format');
+  if (
+    !data.articleId ||
+    !data.title ||
+    !data.version ||
+    !Array.isArray(data.files)
+  ) {
+    throw new Error("Invalid manifest format");
   }
 
   const files: ManifestFile[] = data.files.map((file: ManifestFile) => ({

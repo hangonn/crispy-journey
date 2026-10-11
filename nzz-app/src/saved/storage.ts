@@ -1,6 +1,5 @@
-
-import * as FileSystem from 'expo-file-system/legacy';
-import { enforceMaxSavedArticles } from './downloader';
+import * as FileSystem from "expo-file-system/legacy";
+import { enforceMaxSavedArticles } from "./downloader";
 
 export interface SavedArticle {
   articleId: string;
@@ -12,7 +11,7 @@ export interface SavedArticle {
   path: string;
 }
 
-const SAVED_ARTICLES_DIR = 'saved-articles/';
+const SAVED_ARTICLES_DIR = "saved-articles/";
 
 interface SavedMeta {
   articleId: string;
@@ -41,7 +40,9 @@ export async function getSavedArticles(): Promise<SavedArticle[]> {
       if (!info.exists || !info.isDirectory) continue;
 
       // A copy is only valid if its page is there.
-      const indexInfo = await FileSystem.getInfoAsync(`${articlePath}index.html`);
+      const indexInfo = await FileSystem.getInfoAsync(
+        `${articlePath}index.html`,
+      );
       if (!indexInfo.exists) continue;
 
       const meta = await readMeta(articlePath);
@@ -51,7 +52,9 @@ export async function getSavedArticles(): Promise<SavedArticle[]> {
         articleId: meta?.articleId ?? entry,
         title: meta?.title ?? entry,
         version: meta?.version ?? entry,
-        savedAt: meta?.savedAt ?? (info.modificationTime ? info.modificationTime * 1000 : Date.now()),
+        savedAt:
+          meta?.savedAt ??
+          (info.modificationTime ? info.modificationTime * 1000 : Date.now()),
         size,
         fileCount,
         path: articlePath,
@@ -63,7 +66,8 @@ export async function getSavedArticles(): Promise<SavedArticle[]> {
     // One entry per article: if an update left an older version on disk, show the newest.
     const newestByArticle = new Map<string, SavedArticle>();
     for (const article of articles) {
-      if (!newestByArticle.has(article.articleId)) newestByArticle.set(article.articleId, article);
+      if (!newestByArticle.has(article.articleId))
+        newestByArticle.set(article.articleId, article);
     }
 
     return [...newestByArticle.values()];
@@ -84,7 +88,9 @@ async function readMeta(articlePath: string): Promise<SavedMeta | null> {
   }
 }
 
-async function measure(dir: string): Promise<{ size: number; fileCount: number }> {
+async function measure(
+  dir: string,
+): Promise<{ size: number; fileCount: number }> {
   let size = 0;
   let fileCount = 0;
 
@@ -110,7 +116,10 @@ async function measure(dir: string): Promise<{ size: number; fileCount: number }
 /**
  * Total size and file count of the saved-articles folder, measured from the file system.
  */
-export async function getSavedArticlesStats(): Promise<{ totalSize: number; totalFiles: number }> {
+export async function getSavedArticlesStats(): Promise<{
+  totalSize: number;
+  totalFiles: number;
+}> {
   const baseDir = `${FileSystem.documentDirectory}${SAVED_ARTICLES_DIR}`;
 
   try {
@@ -130,19 +139,26 @@ export async function isArticleSaved(articleId: string): Promise<boolean> {
 }
 
 /** Get the saved version of an article, if any. */
-export async function getSavedArticleVersion(articleId: string): Promise<string | null> {
+export async function getSavedArticleVersion(
+  articleId: string,
+): Promise<string | null> {
   const articles = await getSavedArticles();
-  return articles.find((article) => article.articleId === articleId)?.version ?? null;
+  return (
+    articles.find((article) => article.articleId === articleId)?.version ?? null
+  );
 }
 
 /** Get the local file URL for a saved article's index.html. */
-export async function getSavedArticleUrl(articleId: string, version: string): Promise<string | null> {
+export async function getSavedArticleUrl(
+  articleId: string,
+  version: string,
+): Promise<string | null> {
   const path = `${FileSystem.documentDirectory}${SAVED_ARTICLES_DIR}${articleId}-${version}/index.html`;
   const info = await FileSystem.getInfoAsync(path);
   if (!info.exists) return null;
   // `documentDirectory` already starts with `file://` on both platforms; only add the scheme
   // if it is missing, so the URL is never `file://file:///...`.
-  return path.startsWith('file://') ? path : `file://${path}`;
+  return path.startsWith("file://") ? path : `file://${path}`;
 }
 
 /** Clean up any stale temporary directories left by a download that was killed. */
@@ -153,8 +169,10 @@ export async function cleanupStaleTempDirs(): Promise<void> {
   try {
     const entries = await FileSystem.readDirectoryAsync(cacheDir);
     for (const entry of entries) {
-      if (entry.startsWith('article-') && entry.endsWith('-tmp')) {
-        await FileSystem.deleteAsync(`${cacheDir}${entry}/`, { idempotent: true });
+      if (entry.startsWith("article-") && entry.endsWith("-tmp")) {
+        await FileSystem.deleteAsync(`${cacheDir}${entry}/`, {
+          idempotent: true,
+        });
       }
     }
   } catch {
@@ -174,8 +192,9 @@ export async function deleteSavedArticle(articleId: string): Promise<void> {
     for (const entry of entries) {
       const path = `${baseDir}${entry}/`;
       const meta = await readMeta(path);
-      const id = meta?.articleId ?? entry.replace(/-[0-9a-f]{8}$/, '');
-      if (id === articleId) await FileSystem.deleteAsync(path, { idempotent: true });
+      const id = meta?.articleId ?? entry.replace(/-[0-9a-f]{8}$/, "");
+      if (id === articleId)
+        await FileSystem.deleteAsync(path, { idempotent: true });
     }
   } catch {
     // Best effort.

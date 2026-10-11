@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform } from "react-native";
 
 const PORT = 8787;
 
@@ -13,7 +13,9 @@ const PORT = 8787;
  */
 export const SERVER_URL =
   process.env.EXPO_PUBLIC_SERVER_URL ??
-  (Platform.OS === 'android' ? `http://10.0.2.2:${PORT}` : `http://localhost:${PORT}`);
+  (Platform.OS === "android"
+    ? `http://10.0.2.2:${PORT}`
+    : `http://localhost:${PORT}`);
 
 /** How long the app waits for `/consent` before loading a page without one. */
 export const CONSENT_TIMEOUT_MS = 5000;
@@ -22,5 +24,5 @@ export const CONSENT_TIMEOUT_MS = 5000;
 export const MAX_SAVED_ARTICLES = 5;
 
 /** App identity handed to the tracker and to `window.appContext`. */
-export const APP_VERSION = '1.0.0';
-export const APP_BUILD = '1';
+export const APP_VERSION = "1.0.0";
+export const APP_BUILD = "1";

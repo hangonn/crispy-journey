@@ -1,7 +1,13 @@
-
-import { Platform } from 'react-native';
-import { SERVER_URL, APP_VERSION } from '../config';
-import { newTracker, getWebViewCallback, Tracker, SelfDescribingJson, ScreenViewEvent, WebViewMessage } from './tracker';
+import { Platform } from "react-native";
+import { SERVER_URL, APP_VERSION } from "../config";
+import {
+  newTracker,
+  getWebViewCallback,
+  Tracker,
+  SelfDescribingJson,
+  ScreenViewEvent,
+  WebViewMessage,
+} from "./tracker";
 
 let trackerInstance: Tracker | null = null;
 
@@ -27,17 +33,20 @@ export function initializeTracker(consentString: string | null): void {
   if (!consentString) return;
 
   trackerInstance = newTracker({
-    namespace: 'news-app',
+    namespace: "news-app",
     endpoint: SERVER_URL,
     appVersion: APP_VERSION,
-    platform: Platform.OS as 'ios' | 'android',
+    platform: Platform.OS as "ios" | "android",
   });
 
   // Replay everything that happened before consent, in order.
   const appEvents = pendingAppEvents.splice(0, pendingAppEvents.length);
   appEvents.forEach((send) => send(trackerInstance as Tracker));
 
-  const webMessages = pendingWebViewMessages.splice(0, pendingWebViewMessages.length);
+  const webMessages = pendingWebViewMessages.splice(
+    0,
+    pendingWebViewMessages.length,
+  );
   webMessages.forEach((message) => webViewCallback(message));
 }
 
@@ -50,7 +59,10 @@ export function isTrackerReady(): boolean {
 }
 
 /** Track a screen view. Buffered until the tracker exists. */
-export function trackScreenView(event: ScreenViewEvent, contexts?: SelfDescribingJson[]): void {
+export function trackScreenView(
+  event: ScreenViewEvent,
+  contexts?: SelfDescribingJson[],
+): void {
   if (trackerInstance) {
     trackerInstance.trackScreenViewEvent(event, contexts);
     return;
@@ -62,7 +74,7 @@ export function trackScreenView(event: ScreenViewEvent, contexts?: SelfDescribin
 /** Track the article-read event. Buffered until the tracker exists. */
 export function trackArticleRead(articleId: string): void {
   const event: SelfDescribingJson = {
-    schema: 'iglu:com.example.news/article_read/jsonschema/1-0-0',
+    schema: "iglu:com.example.news/article_read/jsonschema/1-0-0",
     data: { articleId },
   };
 
@@ -87,7 +99,8 @@ export function handleTrackerMessage(rawMessage: string): void {
     return;
   }
 
-  if (pendingWebViewMessages.length >= MAX_PENDING) pendingWebViewMessages.shift();
+  if (pendingWebViewMessages.length >= MAX_PENDING)
+    pendingWebViewMessages.shift();
   pendingWebViewMessages.push(message);
 }
 
