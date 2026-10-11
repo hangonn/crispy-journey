@@ -1,0 +1,469 @@
+{
+  "note": "Free NZZ articles, frozen on 7 Oct 2026 and shortened for the take-home. Images stay on the NZZ image CDN.",
+  "articles": [
+    {
+      "id": "1",
+      "role": "long piece with photos",
+      "kicker": null,
+      "title": "Aufwachsen in der «Manosphere»: Was bedeutet es heute, ein Mann zu werden?",
+      "lead": "Härte, Dominanzdenken und die Abwertung von Frauen sind unter jungen Männern weit verbreitet – auch in der Schweiz. Eine Oral History.",
+      "author": "Rahel Zingg, Auswärtige Autoren NZZ, Nicolas Staub",
+      "published": "2026-10-02",
+      "source": "https://www.nzz.ch/gesellschaft/jonas-15-jahre-es-trifft-mich-wenn-jemand-sagt-ich-hasse-maenner-ich-bin-halt-einer-online-nutzer-16-jahre-stay-fucking-hard-ld.10014684",
+      "image": "https://img-msp-prod.nzz.ch/2026/08/25/9876ddc7-6d9b-4e84-b80a-6f01cb0e666a.jpg?width=480&fit=bounds&quality=75&crop=5760,3240,x0,y1&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Yanis, 11: «Männer sind ein bisschen stärker als Frauen.»"
+        },
+        {
+          "type": "p",
+          "text": "Len, 13: «Es gibt in den sozialen Netzwerken Leute, die sagen: Ein Mann muss so und so gross sein, um ein richtiger Mann zu sein. Und so und so viel verdienen. Meine Freunde und ich lachen darüber.»"
+        },
+        {
+          "type": "p",
+          "text": "Lukas, 15: «Man gerät online leicht in diese Bubble mit der ganzen toxischen Männlichkeit.»"
+        },
+        {
+          "type": "p",
+          "text": "Was passiert zwischen diesen Sätzen? Was bedeutet es, unter dem ständigen Einfluss von Social Media erwachsen zu werden? Wir haben mit jungen Männern aus der Deutschschweiz gesprochen. Sie erzählen von Fitness und vom Gaming, von der Scham zu weinen und von Vorbildern. Sie erzählen von einer Phase, in der aus einem Jungen ein Mann wird, ohne genau zu wissen, was das überhaupt heissen soll."
+        },
+        {
+          "type": "p",
+          "text": "Die Jungen begegnen in den Feeds der sozialen Netzwerke und in Chat-Foren Influencern wie Andrew Tate, die Härte als Stärke verkaufen und Unsicherheit mit Verachtung begegnen. Solche Männerbilder bleiben nicht immer in der virtuellen Welt. Sie erscheinen auf dem Schulhof, im Lehrbetrieb, am Familientisch."
+        },
+        {
+          "type": "p",
+          "text": "Die minderjährigen Gesprächspartner wurden mit Einverständnis der Erziehungsberechtigten interviewt, ihre Namen wurden geändert. Die Chat-Auszüge von Schweizer Nutzern der Online-Universität von Andrew Tate, The Real World (TRW), wurden anonymisiert und teilweise übersetzt. Der Text folgt dem Alter der Jungen, von elf bis achtzehn Jahren."
+        },
+        {
+          "type": "figure",
+          "src": "https://img-msp-prod.nzz.ch/2026/08/25/d177eacf-8b6c-490b-9a6e-67164fc7a431.jpg?width=960&fit=bounds&quality=75&crop=1891,1497,x0,y0",
+          "alt": "",
+          "caption": "",
+          "bytes": 256534
+        },
+        {
+          "type": "quote",
+          "text": "Elf Jahre"
+        },
+        {
+          "type": "p",
+          "text": "Kilian, 11: «Ein Mann ist ein Junge. Nur grösser. Und vielleicht mit Bart.»"
+        },
+        {
+          "type": "p",
+          "text": "Silvan, 11: «Es gibt halt Menschen. Manche sind grösser. Manche kleiner.»"
+        },
+        {
+          "type": "p",
+          "text": "Milo, 11: «Hip-Hop zu tanzen, gefällt mir besser, als Fussball zu spielen. Im Kindergarten war das noch egal. Jetzt merke ich halt schon: Sie spielen die ganze Zeit Fussball. Sehr viele sind auch in einem Klub. Und ich halt nicht.»"
+        },
+        {
+          "type": "p",
+          "text": "Silvan, 11: «Ich habe gar kein richtiges Vorbild. Einfach jemand, der nett ist. Und lustig.»"
+        },
+        {
+          "type": "p",
+          "text": "Yanis, 11: «Vielleicht Cristiano Ronaldo.»"
+        },
+        {
+          "type": "p",
+          "text": "Dario, 11: «Cristiano Ronaldo ist sportlich. Er ist fit. Er war wichtig für seine Nationalmannschaft und für seine Teams. Wenn er sich freut, zeigt er das. Wenn er traurig ist, zeigt er das auch.»"
+        },
+        {
+          "type": "p",
+          "text": "Yanis, 11: «Social Media sind langweilig. Ich lebe lieber draussen, bei den richtigen Menschen.»"
+        },
+        {
+          "type": "p",
+          "text": "Kilian, 11: «Andrew Tate? Sagt mir nichts.»"
+        },
+        {
+          "type": "p",
+          "text": "Yanis, 11: «Das ist so ein berühmter Kickboxer. Er hat viel Geld. Und geht nicht so gut mit anderen Leuten um. Er beleidigt Frauen oft.»"
+        },
+        {
+          "type": "p",
+          "text": "Ende Juli 2026 verhafteten US-Marshals in Miami Andrew Tate und seinen Bruder Tristan. Grossbritannien verlangt deren Auslieferung. Gegen Andrew liegen 42 Anklagepunkte vor, gegen Tristan 17. Es geht dabei um Vergewaltigung, Organisation und Förderung von Menschenhandel zum Zweck der sexuellen Ausbeutung sowie Straftaten im Zusammenhang mit kinderpornografischen Inhalten. Die Brüder bestreiten alles, ihr Anwalt spricht von einem politischen Komplott."
+        },
+        {
+          "type": "p",
+          "text": "Für viele junge Männer ist Tate kein Angeklagter, er ist ihr Lehrer. Auf X folgen ihm über zehn Millionen Menschen. Der Algorithmus, der die Sichtbarkeit von Beiträgen in den sozialen Netzwerken steuert, bemisst nicht, ob einer recht hat oder vor Gericht steht. Er belohnt den Lautesten."
+        },
+        {
+          "type": "p",
+          "text": "Tate ist dabei nicht allein. Um ihn herum wuchert ein Geflecht aus Foren, Youtube-Kanälen, Podcasts. So verschieden ihre Akteure auftreten, sie erzählen dieselbe Geschichte: Der Mann sei benachteiligt, die Frauen zu mächtig, die «echte» Männlichkeit im Rückzug, Härte mache frei. Diese Welt heisst «Manosphere» und einer ihrer Orte ist The Real World (TRW). Andrew Tate hat die Plattform aus seiner alten «Hustlers University» gebaut, die einmal 160 000 Mitglieder verzeichnete. Der Eintritt kostet 49 Dollar 99 monatlich, das Versprechen ist masslos: raus aus der «Matrix», raus aus dem gewöhnlichen Leben. Männer, die sich Professoren nennen (angeblich alles Millionäre), zeigen in wackligen Videos, wie man vom Laptop aus reich wird."
+        },
+        {
+          "type": "p",
+          "text": "In geleakten Datensätzen der Plattform von 2024, die der NZZ-Redaktion vorliegen, liessen sich 54 Nutzer aus der Schweiz identifizieren, die angaben, zwischen 13 und 20 Jahren alt zu sein. Einer, 19, nennt sich «Day Trader, Investor». Ein anderer, 20, ist ein «Boxer aus Zürich». Ein 15-Jähriger schreibt, er habe «einen grossen Traum: ein freier Mann zu werden». Sie tauschen Trainingspläne, Krypto-Fragen und Bibelverse aus, feiern kleine Erfolge und treiben sich gegenseitig an. Sie wünschen einander morgens «GM Brothers» (Good Morning) und sprechen sich gegenseitig mit «G» (Gangster) an. Es ist die Sprache einer Bruderschaft, geleitet von einem Mann, der kürzlich in Miami in Handschellen abgeführt wurde."
+        },
+        {
+          "type": "figure",
+          "src": "https://img-msp-prod.nzz.ch/2026/08/25/daaf8aed-b0ce-461f-b25b-eba2809fc221.jpg?width=960&fit=bounds&quality=75&crop=1891,1600,x0,y0",
+          "alt": "",
+          "caption": "",
+          "bytes": 261206
+        },
+        {
+          "type": "quote",
+          "text": "Dreizehn Jahre"
+        },
+        {
+          "type": "p",
+          "text": "Len, 13: «Es gibt in den sozialen Netzwerken halt Leute, die sagen: Ein Mann muss so und so gross sein, um ein richtiger Mann zu sein. Und so und so viel verdienen. Meine Freunde und ich lachen darüber.»"
+        },
+        {
+          "type": "p",
+          "text": "Flurin, 13: «Jungs beleidigen sich auch mal aus Spass. Und sie schlagen sich zum Spass. Das ist so ein Buben-Ding. Ich kann mir nicht vorstellen, dass Mädchen das tun.»"
+        },
+        {
+          "type": "figure",
+          "src": "https://img-msp-prod.nzz.ch/2026/08/25/fe337e99-22cd-43fd-b3e1-e89f5a1b257a.jpg?width=960&fit=bounds&quality=75&crop=1891,1445,x0,y0",
+          "alt": "",
+          "caption": "",
+          "bytes": 233153
+        },
+        {
+          "type": "quote",
+          "text": "Fünfzehn Jahre"
+        },
+        {
+          "type": "p",
+          "text": "Noé, 15: «Ich versuche, mich noch wie ein Kind zu fühlen. Wenn du ein Kind bist, hast du viel mehr positive Ansichten. Du hast mehr Kreativität. Mehr Spass am Leben. Viele Erwachsene haben Leistungsdruck. Sie wollen sich immer toppen.»"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "role": "related plain link",
+      "kicker": "Video",
+      "title": "Bolsonaro-Clan: Eine ganze Familie betreibt Wahlkampf in Brasilien",
+      "lead": "Am 4. Oktober wählt Brasilien einen neuen Präsidenten. Die Favoriten: Lula da Silva und Flávio Bolsonaro. Hinter Letzterem steckt eine ganze Familie – und jedes Familienmitglied nimmt eine andere entscheidende Rolle im Wahlkampf ein.",
+      "author": "Michelle Amstutz, Janine Bucher",
+      "published": "2026-10-02",
+      "source": "https://www.nzz.ch/video/bolsonaro-clan-eine-ganze-familie-betreibt-praesidentschaftswahlkampf-in-brasilien-ld.10026330",
+      "image": "https://img-msp-prod.nzz.ch/2026/10/01/85d6559c-0d32-494e-bc16-36d734872aaf.jpg?width=480&fit=bounds&quality=75&crop=1920,1080,x0,y0&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Brasiliens Rechte hat bei den Wahlen am 4. Oktober einen Erdrutschsieg erlebt. Unerwartet viele Politiker aus dem rechten Lager haben Posten als Gouverneure und Senatoren gewonnen – darunter auch zwei Mitglieder der Bolsonaro-Familie."
+        },
+        {
+          "type": "p",
+          "text": "Nur knapp entging Flávio Bolsonaro selbst eine Mehrheit für das Amt des Präsidenten. Nun tritt er am 25. Oktober in einer Stichwahl gegen den amtierenden Präsidenten Lula an."
+        },
+        {
+          "type": "p",
+          "text": "Das Duell Lula gegen Bolsonaro gab es schon einmal 2022. Damals gegen den Vater Jair Bolsonaro. Der sitzt inzwischen aber eine Haftstrafe ab und kann nicht selbst antreten. Trotzdem ist er in diesem Wahlkampf präsent."
+        },
+        {
+          "type": "p",
+          "text": "Wie macht er das? Und wie viel Einfluss hat er wirklich auf die Wahlen? Und weshalb könnte ein politisches Comeback der Bolsonaros über Brasilien hinaus Folgen haben?"
+        },
+        {
+          "type": "p",
+          "text": "In der ersten Wahlrunde kriegt Flávio Bolsonaro rund 47 Prozent der Stimmen. Er liegt knapp vor seinem Gegner Lula, der rund 45 Prozent der Stimmen erhielt. Nun muss Lula im zweiten Teil des Wahlkampfs unbedingt neue Stimmen holen. Und das könnte schwer werden."
+        },
+        {
+          "type": "p",
+          "text": "Flávio dürfte nämlich grossen Rückhalt seiner Partei haben, der Partido Liberal. Sie hat in den Wahlen einige Sitze im Senat und mehrere Gouverneursposten abgestaubt und verfügt so in ihren Gliedstaaten über politische Netzwerke und Mobilisierungskraft."
+        },
+        {
+          "type": "p",
+          "text": "Und auch die Unterstützung in der Bolsonaro-Familie ist nach wie vor gross: Besonders Flávios Vater spielt eine grosse Rolle im Wahlkampf. Und das obwohl er unter Hausarrest steht."
+        },
+        {
+          "type": "p",
+          "text": "Der Grund: Nach seiner knappen Wahlniederlage 2022 gegen Lula stürmten rund 4000 seiner Anhänger das Regierungsviertel in Brasilia, überzeugt davon, dass die Wahl manipuliert worden sei. Der Mob forderte eine Machtübernahme durch das Militär. Das Oberste Gericht hat Bolsonaro wegen versuchten Staatsstreichs schuldig gesprochen. Er wurde zu 27 Jahren Haft verurteilt."
+        },
+        {
+          "type": "p",
+          "text": "Doch obwohl ihm das Oberste Gericht jeden Kontakt zum Wahlkampf verboten hat, kommen seine Botschaften bei den Wählerinnen und Wählern an, etwa so per KI-Video."
+        },
+        {
+          "type": "p",
+          "text": "KI-generierter Jair Bolsonaro: «Wie alle Anwesenden wissen, werde ich zum Schweigen gebracht, aufgrund ungerechten und willkürlichen Entscheidungen die auf etwas beruhen, das ich nie getan habe.»"
+        },
+        {
+          "type": "p",
+          "text": "Sein ältester Sohn soll also in seine Fussstapfen treten. Jedoch nicht ganz ohne seinen Vater. Jair ist in Flávios Videos zu sehen, wird in seinen Reden gefeiert."
+        },
+        {
+          "type": "p",
+          "text": "Flávio Bolsonaro: «Sie haben versucht, Bolsonaro zum Schweigen zu bringen, aber es ist ihnen nicht gelungen.»"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "role": "related link + message",
+      "kicker": "Video",
+      "title": "Betreibt Trump Insiderhandel? Analyse auffälliger Finanzgeschäfte",
+      "lead": "Auffälliges Timing, Zehntausende Trades und ein Präsident mit privilegiertem Informationszugang: Donald Trumps Finanzgeschäfte nähren seit Monaten Spekulationen. Unsere Recherche zeigt, was am Verdacht auf Insiderhandel dran ist.",
+      "author": "Florentin Erb",
+      "published": "2026-10-06",
+      "source": "https://www.nzz.ch/video/betreibt-trump-insiderhandel-ld.10026093",
+      "image": "https://img-msp-prod.nzz.ch/2026/10/02/4abc4c52-10fb-4072-bb1a-906f8526e43b.jpg?width=480&fit=bounds&quality=75&crop=1745,982,x100,y0&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Betreibt Trump Insiderhandel? Es ist der 7. April 2026, 8.06 Uhr, Ortszeit in Washington. US-Präsident Donald Trump droht Iran auf Truth Social. «Heute Nacht wird eine ganze Zivilisation untergehen.» Wir befinden uns mitten im Iran-Krieg. Doch dann kündigt sich eine Wendung an. Shehbaz Sharif, der Ministerpräsident Pakistans, schlägt auf X eine zweiwöchige Waffenruhe vor. Es scheint, als könnten Verhandlungen beginnen. Um 18.32 Uhr verkündet Trump auf Truth Social: Es gibt eine Einigung. Eine zweiwöchige Waffenruhe ist beschlossen. Die Märkte reagieren. Nach der Ankündigung fällt der Ölpreis und damit auch die Aktien der Öl-Firmen. Darunter auch Exxon. Aus Trumps Finanzoffenlegungen wissen wir heute: Auf seinen Investmentkonten wurde an diesem Tag genau mit diesen Aktien gehandelt. Er hat Exxon-Aktien im Wert von 500 000 bis 1 000 000 Dollar verkauft. Auf den ersten Blick wirkt das dubios. Amerikanische Medien greifen den Trade auf. Doch Exxon ist nur eines von vielen Beispielen. Bei unserer Analyse stossen wir auf weitere Geschäfte, die Fragen aufwerfen. Thomas Werlen: Da bestehen Möglichkeiten, einen Präsidenten einzuklagen."
+        },
+        {
+          "type": "p",
+          "text": "Was ist hier genau passiert? War es Insiderhandel? Eflamm Mordrelle: Das ist ein grosses Politikum, inwiefern das redlich ist."
+        },
+        {
+          "type": "p",
+          "text": "Wir prüfen, was an diesem Verdacht dran ist. Aus diesen riesigen Tabellen wissen wir von Donald Trumps Aktiengeschäften. Es sind verschiedene PDFs, teils fast 1000 Seiten lang. Offengelegt wird die jeweilige Aktie, das Trade-Datum, das ungefähre Volumen der Transaktion und teils auch der Account, von dem der Trade ausgeführt wurde. Diese Daten müssen US-Präsidenten seit dem «Ethics in Government Act» von 1978 offenlegen. Damit soll mehr Transparenz ermöglicht werden."
+        },
+        {
+          "type": "p",
+          "text": "Thomas Werlen: Das ist zentral nicht nur, weil man verhindern will, dass sich einzelne Leute ungerechtfertig bereichen, das ist der persönliche Vorteil, sondern zweitens eben auch, dass das Vertrauen in den Kapitalmarkt als solchen, in der Tatsache, dass keine Informationsvorsprünge bestehen. Das ist in sich derart zentral, damit die Märkte überhaupt funktionieren können."
+        },
+        {
+          "type": "p",
+          "text": "Seit Einführung der öffentlichen Finanzoffenlegung finden wir keinen US-Präsidenten mit einer vergleichbaren Zahl gemeldeter Einzelaktientrades im Amt. George W. Bush meldete keine Trades. Barack Obama 16 Transaktionen und Joe Biden 13. Trump dagegen kommt allein für 2025 auf mehr als 21 000 gemeldete Wertpapiertransaktionen. Zusammengerechnet finden sich in den Offenlegungen insgesamt über 30 000 Transaktionszeilen für Trumps bisherige Amtszeit."
+        },
+        {
+          "type": "p",
+          "text": "Eflamm Mordrelle: Das ist ein historischer Bruch, mit dem, was frühere Präsidenten getan haben. Aber es ist natürlich Teil einer grösseren Debatte, die in den USA schon seit Längerem herrscht. Auch bei den Demokraten, also Nancy Pelosi und ihr Mann, sind ein bekanntes Beispiel, die auch sehr aktiv sind an den Finanzmärkten. Das ist ein grosses Politikum, inwiefern das redlich ist, weil diese Politiker in verschiedenen Ausschüssen sitzen und natürlich Zugang haben zu Informationen, die die meisten Anleger nicht haben."
+        },
+        {
+          "type": "p",
+          "text": "Eine einzige gesetzliche Definition von Insiderhandel gibt es in den USA nicht. Das Recht hat sich über Jahrzehnte durch Gesetze, Regeln und Gerichtsurteile entwickelt. Aber ein auffälliger Trade allein reicht nicht. In der Praxis müssen mehrere Dinge zusammenkommen. Zuerst muss die verdächtigte Person über eine konkrete Information verfügen. Diese Info muss kursrelevant sein und darf zum Zeitpunkt des Trades nicht öffentlich sein. Zudem muss die Person einer Pflicht unterliegen, diese nicht preiszugeben. Wird dann in Kenntnis dieser Information getradet, sind die zentralen Voraussetzungen für Insiderhandel erfüllt."
+        },
+        {
+          "type": "p",
+          "text": "Thomas Werlen: Sie müssen dort letztlich eine lückenlose Kette vorlegen können."
+        },
+        {
+          "type": "p",
+          "text": "Um das anschaulich zu machen, schauen wir uns einen aktuellen Fall direkt aus dem Weissen Haus an. und zwar den von Gabriel Perez. Er ist Angestellter im Weissen Haus und zuständig für Donald Trumps Teleprompter. Damit hat er schon vor den Reden Zugriff auf den Text. Perez hat auf Kalshi, einem Prognosemarkt, Wetten zum Inhalt der Reden abgeschlossen. Mit diesen soll er über 100 000 US-Dollar erwirtschaftet haben. Die US-Behörde CFTC hat den Fall untersucht und Gabriel Perez zu einer Geldstrafe verurteilt. Der Fall zeigt sehr anschaulich, welche Verbindung zwischen Information und Trade nachweisbar sein muss. Hier sind alle Faktoren erfüllt: Perez verfügte über eine konkrete, nicht öffentliche, kursrelevante Information und unterlag einer Pflicht, diese nicht preiszugeben. Und sein Trade wurde auf Basis dieser Info abgeschlossen."
+        },
+        {
+          "type": "p",
+          "text": "Eflamm Mordrelle: Es gab jetzt auch Bemühungen, dass man auf den Wettplattformen wie Kalshi etwa Einschränkungen einführen will, dass Civil Servants hier nicht traden dürfen. Aber hier ist der Prozess noch nicht so weit fortgeschritten."
+        },
+        {
+          "type": "p",
+          "text": "Bei Perez kann die Behörde diese Kette nachvollziehen. Genau diese Zusammenhänge kann man auch bei Trump überprüfen. Schauen wir also nochmals auf den 7. April und die Exxon-Aktien."
+        },
+        {
+          "type": "p",
+          "text": "Es gibt eine konkrete Information: Den Beschluss einer zweiwöchigen Waffenruhe zwischen den USA und Iran. Diese Information ist kursrelevant. Um 18.32 Uhr macht Trump die Einigung öffentlich. Die Finanzoffenlegung verrät uns nicht, wann die Exxon-Aktien verkauft wurden. Wir kennen nur das Datum, keine Uhrzeit. Hier stossen wir auf das erste Problem. Wäre der Trade vor 18.32 Uhr abgeschlossen worden, würde sich der Verdacht weiter erhärten. Der Trade wäre wesentlich auffälliger. Das Geschäft könnte aber auch nach den Ankündigungen im After-Hours-Trading abgeschlossen worden sein. Was zunächst wie ein ganz klarer Fall aussieht, ist plötzlich gar nicht mehr so eindeutig."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "role": "never ready",
+      "kicker": "Video",
+      "title": "Straße von Hormuz: Neue Strategien und Risiken im globalen Ölhandel",
+      "lead": "Die Strasse von Hormuz ist der wichtigste Seeweg für den Ölhandel. Die Golfstaaten suchen daher nach Alternativen. Dabei entstehen neue Risiken.",
+      "author": "Simon Knolmayer",
+      "published": "2026-08-24",
+      "source": "https://www.nzz.ch/video/das-oel-sucht-einen-anderen-weg-die-alternativen-zur-strasse-von-hormuz-ld.10020784",
+      "image": "https://img-msp-prod.nzz.ch/2026/08/24/4273a5f5-e7b4-4c77-bdf6-73e16a425c3c.jpg?width=480&fit=bounds&quality=75&crop=1920,1080,x0,y0&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Eine einzige Meerenge entscheidet darüber, wie viel Öl den Persischen Golf verlassen kann. Zumindest war das lange so, denn das Öl fliesst woanders weiter. Hunderte Kilometer entfernt, mitten durch die Wüste, quer durch Saudiarabien und die Arabischen Emirate. Das Öl landet letztlich bei Häfen ausserhalb der Meerenge. Zudem zeigen gigantische Pläne neue Schiffsrouten. Die Golfstaaten machen sich damit unabhängiger von der Strasse von Hormuz. Denn jede neue Eskalation kann den Schiffsverkehr im Persischen Golf erneut zum Stillstand bringen. Doch kann die wichtigste Ölroute der Welt wirklich ersetzt werden?"
+        },
+        {
+          "type": "p",
+          "text": "Die Strasse von Hormuz verbindet den Persischen Golf mit dem Golf von Oman und weiter mit dem Arabischen Meer. 2025 wurden hier täglich knapp 20 Millionen Fass Rohöl und Ölprodukte transportiert. Das entspricht rund einem Viertel des weltweiten Ölhandels über See. Dazu kommt fast ein Fünftel des weltweiten Handels mit Flüssigerdgas. Vor allem Asien hängt an dieser Route. Rund 80 Prozent des Öls aus Hormuz gehen dorthin. Hauptabnehmer sind Indien, China, Japan und Südkorea."
+        },
+        {
+          "type": "p",
+          "text": "Genau diese Konzentration gibt Iran einen mächtigen Hebel. Das internationale Seerecht sieht hier grundsätzlich freie Transitpassage vor. Aber internationales Recht macht eine Wasserstrasse nicht automatisch sicher. Minen, Raketen, Drohnen oder Schnellboote können die Passage so gefährlich machen, dass Reedereien sie meiden."
+        },
+        {
+          "type": "p",
+          "text": "Benjamin Triebe: «Die Schäden durch eine Blockade der Strasse von Hormuz können enorm sein. Und wir erleben das auch in diesem Frühling und in diesem Sommer. Die Preise für Öl sind stark gestiegen, aber auch die Preise für alle Produkte, die mit dem Rohöl zusammenhängen. Und die gestiegenen Kosten belasten die Volkswirtschaften überall. Die Staaten rund um den Golf versuchen natürlich, Alternativen zu finden. Denn es galt schon seit Jahrzehnten immer als Worst Case, dass Iran einmal die Strasse von Hormuz sperrt.»"
+        },
+        {
+          "type": "p",
+          "text": "Die spektakulärste Alternative klingt zunächst erstaunlich einfach: Wenn Hormuz das Problem ist, warum baut man nicht einfach eine zweite Durchfahrt? Diese futuristischen Bilder etwa zeigen das Konzept eines solchen Kanals von Dubai bis nach Fujairah. Schon 2008 wurde eine ähnliche Idee diskutiert. Geschätzte Kosten damals: rund 200 Milliarden Dollar."
+        },
+        {
+          "type": "p",
+          "text": "Eine deutlich kleinere Idee setzt hier in Musandam an – dem omanischen Gebiet direkt an der Strasse von Hormuz. Ein Konzeptpapier von 2026 schlägt vor, hier einen neuen Seeweg zu errichten. Doch ob Geologie, Wassertiefe und Fahrrinne tatsächlich für grosse Tanker geeignet sind, ist noch ungeklärt."
+        },
+        {
+          "type": "p",
+          "text": "Die Golfstaaten bauen daher eine andere Alternative aus: nicht durchs Wasser, sondern über Land mit Pipelines. Zwei grosse Hormuz-Bypässe gibt es bereits. Die East-West-Pipeline führt rund 1200 Kilometer quer durch Saudiarabien. Hier von den Ölfeldern im Osten bis nach Yanbu am Roten Meer. Sie entstand bereits Anfang der 1980er Jahre. Heute kann sie bis zu 7 Millionen Fass Rohöl täglich transportieren."
+        },
+        {
+          "type": "p",
+          "text": "Und auch die Emirate haben sich einen Ausgang jenseits von Hormuz geschaffen. Die Abu-Dhabi-Pipeline führt über rund 400 Kilometer von Habshan nach Fujairah. Entscheidend ist ihr Endpunkt: Fujairah liegt bereits ausserhalb der Meerenge. Von hier fahren Tanker direkt in den Golf von Oman und weiter ins Arabische Meer. Bis zu 1,8 Millionen Fass Rohöl können täglich über die Leitung transportiert werden."
+        },
+        {
+          "type": "p",
+          "text": "Auf dem Papier können beide Leitungen zusammen also bis zu 8,8 Millionen Fass Rohöl täglich transportieren. Das klingt nach viel, doch im Vergleich zu Hormuz ist es sehr wenig. Allein im vierten Quartal 2025 passierten knapp 16 Millionen Fass Rohöl täglich die Meerenge. Die bestehenden Leitungen reichen also bei weitem noch nicht aus."
+        },
+        {
+          "type": "p",
+          "text": "Benjamin Triebe: «Die Länder am Golf arbeiten mit Hochdruck daran, alternative Pipelines zu bauen, um ihre Ölprodukte aus der Region zu exportieren. Sie haben bestehende Pläne beschleunigt und auch neue Pläne entwickelt, um ihre Abhängigkeit von der Strasse von Hormuz so weit zu reduzieren wie möglich.»"
+        }
+      ],
+      "ready": "never"
+    },
+    {
+      "id": "5",
+      "role": "ready twice",
+      "kicker": "Video",
+      "title": "Geburtenrückgang Schweiz: Warum immer weniger Menschen Kinder wollen",
+      "lead": "Die Geburtenrate sinkt weltweit. Auch in der Schweiz ist das ein Problem. Warum wollen immer weniger Menschen Kinder? Und was bedeutet das für die Schweiz?",
+      "author": "Janine Bucher, Raca Wita",
+      "published": "2026-08-28",
+      "source": "https://www.nzz.ch/video/erklaert/babyboom-laesst-sich-nicht-erkaufen-warum-die-meisten-massnahmen-gegen-den-geburtenrueckgang-scheitern-ld.10020195",
+      "image": "https://img-msp-prod.nzz.ch/2026/08/26/a5df191a-6b25-483d-a7e7-cd26631636dd.jpg?width=480&fit=bounds&quality=75&crop=5015,2821,x0,y144&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Auf der ganzen Welt fehlen die Babys. Extrembeispiele sind Japan oder Südkorea. Hier schrumpft die Bevölkerung schon. Viele Länder haben längst reagiert und versuchen mit Massnahmen den Rückgang zu bremsen, zum Teil mit skurrilen Ideen."
+        },
+        {
+          "type": "p",
+          "text": "Auch in der Schweiz wird der Geburtenrückgang zum Problem. Noch nie war die Geburtenrate so tief wie jetzt. Wir haben uns die Frage gestellt: Wieso wollen die Schweizerinnen und Schweizer keine Kinder mehr? In diesem Video klären wir die Folgen der niedrigen Geburtenrate und zeigen, was dagegen unternommen wird."
+        },
+        {
+          "type": "p",
+          "text": "Diese Grafik zeigt die Entwicklung der Geburtenrate in der Schweiz. Sie zeigt, wie viele Kinder eine Frau in der Schweiz im Schnitt bekommt. Während der 60er Jahre ist die Zahl dramatisch gesunken. Sie liegt momentan bei 1,28 Kindern pro Frau. Das ist so tief wie noch nie."
+        },
+        {
+          "type": "p",
+          "text": "Was eine Geburtenrate von 1,28 bedeutet, lässt sich einfach erklären. 1000 Menschen einer Generation bekommen bei einer Geburtenrate von 1,28 etwa 640 Nachkommen. Diese Generation führt zu 410 Nachkommen, diese ihrerseits wiederum zu 262. Nach nur drei Generationen ist der Nachwuchs um 74 Prozent geschrumpft. Damit das nicht passiert, braucht es eine Geburtenrate von mindestens 2,1. So würden die Nachfolgegenerationen nicht schrumpfen."
+        },
+        {
+          "type": "p",
+          "text": "Um besser zu verstehen, warum es immer weniger Kinder in der Schweiz gibt, haben wir mit jungen Menschen gesprochen. Sie haben alle eines gemeinsam. Sie wissen nicht, ob sie Kinder wollen. «Früher dachte ich immer, ich muss Kinder haben. Bis ich dann vor zwei, drei Jahren gemerkt habe: Kann ich mir das überhaupt vorstellen?» «Ich möchte eigentlich, dass meine Kinder dann so aufwachsen können, wie ich meine Kindheit erlebt habe.» «Da ich selbst ohne Geldsorgen aufgewachsen bin, möchte ich auch dasselbe meinen eigenen Kindern bieten.» «Zum Beispiel, das Kind ausserfamiliär betreuen zu lassen, kostet nicht wenig Geld.» «Ein Grund, warum ich keine Kinder habe, ist, dass ich noch nicht den geeigneten Partner für mich gefunden habe.» «Dann kommt noch die geopolitische Lage auch ein bisschen on top.»"
+        },
+        {
+          "type": "p",
+          "text": "Was unsere Gesprächspartnerinnen und Gesprächspartner sagen, deckt sich mit dem Befunden in dieser Studie des Versicherers Swiss Life. Mehr als 3000 Menschen wurden zu ihren Wünschen und Gründen rund ums Kinderhaben befragt. Warum entscheiden sich einige dagegen, ein Kind zu bekommen? Die meistgenannten Gründe: Der Kinderwunsch fehlt. Kinder kosten zu viel Zeit und Geld. Die Weltlage macht Angst. Oder der Job lässt sich mit der Familie kaum vereinbaren. «Heute werden Kinder nicht mehr im Bett gemacht, sondern eigentlich im Kopf. Und im Kopf muss man ganz viele Faktoren vorher erfüllt haben. Also man muss ein abgeschlossenes Studium oder eine Berufsausbildung, man will schon ein bisschen gearbeitet haben. Man muss den idealen Partner gefunden haben. Man möchte auch eine anständige Wohnung in einem guten Quartier. Gereist sollte man auch schon sein. Der Lohn muss stimmen.»"
+        },
+        {
+          "type": "p",
+          "text": "Eine häufige Folge: Wer überhaupt Kinder will, bekommt sie immer später. In der Schweiz sind Frauen im Schnitt bei der ersten Geburt 31,3 Jahre alt. Sie gehören damit zu den ältesten Müttern Europas. Und das hat Folgen Bei Frauen sinkt die Chance auf eine Schwangerschaft ab dem 35. Lebensjahr deutlich. Diese Lücke hier ist übrigens kein Fehler. Bis 2004 wurden nur Geburten von verheirateten Frauen berücksichtigt. Seit 2005 ist die Statistik aber unabhängig vom Zivilstand der Frau."
+        },
+        {
+          "type": "p",
+          "text": "«Und jetzt könnte man denken: Das ist ja noch relativ jung. Ist es vielleicht auch. Aber wenn man bedenkt, dass die dann ein Kind bekommen und dann stillen sie, sind im Mutterschutzurlaub. Dann wollen sie vielleicht wieder eine Zeit lang arbeiten und bevor sie überhaupt überlegen, ein zweites Kind, sind sie dann vielleicht schon 33, 34 oder 35 Jahre alt. Und ab 35 Jahren geht eben die Chance massiv zurück, schwanger zu werden. Also es wird dann schwieriger. Und oft ist es dann so, dass eben die Kinderzahl zurückgeht, je älter die Mütter bei der ersten Geburt sind.»"
+        },
+        {
+          "type": "p",
+          "text": "Weniger Menschen in der Schweiz. Für mich klingt das zunächst nach weniger Stau oder mehr Platz im Zug. Aber wenn immer weniger Kinder geboren werden, kommen gravierende Probleme auf uns zu."
+        },
+        {
+          "type": "p",
+          "text": "Ein Problem lässt sich anhand der sogenannten Alterspyramide zeigen. Sie zeigt die Anzahl der Menschen nach Alter und Geschlecht. Unten die Kinder und Jugendlichen. In der Mitte die Menschen im erwerbstätigen Alter. Und zu oberst die Rentnerinnen und Rentner. Bei einer wachsenden Bevölkerung hat diese Grafik die Form eines Tannenbaums. Die jüngeren Jahrgänge bilden die breitere Basis."
+        }
+      ],
+      "ready": "twice"
+    },
+    {
+      "id": "6",
+      "role": "ready after 3 s",
+      "kicker": "Video",
+      "title": "Sommer 2026: Die Zukunft des Wasserschlosses Europas",
+      "lead": "Der Bodensee erreicht diesen Sommer sein Rekordtief. Und auch anderen Gewässern in der Schweiz geht es ähnlich. Das könnte in der Schweiz zur Normalität werden. Forscher zeigen am Bodensee und dem Griesgletscher, was das für Strom, Landwirtschaft und Schifffahrt bedeutet.",
+      "author": "Patrizia Widmer",
+      "published": "2026-09-07",
+      "source": "https://www.nzz.ch/video/wenn-hitzesommer-wie-2026-normal-werden-verliert-die-schweiz-ihren-wasserspeicher-ld.10022656",
+      "image": "https://img-msp-prod.nzz.ch/2026/09/07/2e5d8768-711f-4217-9272-5e76037dcde7.jpg?width=480&fit=bounds&quality=75&crop=1920,1080,x0,y0&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Der Bodensee erreicht ein Rekordtief: So wenig Wasser hatte der See im Sommer noch nie. Der Wasserspiegel liegt stellenweise mehr als einen Meter unter dem Durchschnitt. Klimamodelle zeigen: Ende Jahrhundert könnte das zu einem normalen Sommer werden."
+        },
+        {
+          "type": "p",
+          "text": "Der Sommer 2026 war heiss und sehr trocken. Manche Flüsse hatten kaum noch Wasser. Der Grund dafür liegt in den Bergen. Schnee und Gletscher versorgen unsere Flüsse und Seen im Sommer mit Wasser. Aber genau dieser Speicher schmilzt uns unter dem Klimawandel davon."
+        },
+        {
+          "type": "p",
+          "text": "Was passiert, wenn Eis und Schnee verschwinden? Trocknet das Wasserschloss Schweiz langsam aus?"
+        },
+        {
+          "type": "p",
+          "text": "Dem Bodensee fehlt diesen Sommer rund ein Meter Wasser. Und das Wasser wird warm. Ende Juni misst eine Station etwa 27 Grad. Das sind 7 Grad mehr als sonst um diese Zeit."
+        },
+        {
+          "type": "p",
+          "text": "Dem Bodensee fehlt Schmelzwasser. Eigentlich sollte davon genug vorhanden sein: In den Alpen regnet und schneit es viel. Wenn warme, feuchte Luft aus dem Flachland auf Berge trifft, steigt sie nach oben. Dabei kühlt sie ab, das Wasser kondensiert und es regnet oder schneit. Die Alpen machen die Schweiz so zum «Wasserschloss» Europas."
+        },
+        {
+          "type": "p",
+          "text": "Im Bodensee kommt etwa die Hälfte des Wassers aus geschmolzenem Schnee. Der Grossteil davon kommt aus dem Alpenrhein. Der Alpenrhein hat sein Einzugsgebiet grösstenteils im Kanton Graubünden. Dort gibt es im Winter normalerweise viel Niederschlag, der als Schnee liegen bleibt."
+        },
+        {
+          "type": "p",
+          "text": "Das zeigt die Messstation bei Diepoldsau, die kurz vor dem Bodensee liegt. Im Herbst und im Winter fliesst wenig Wasser durch den Alpenrhein, weil der Schnee in den Alpen liegen bleibt. Im Mai und Juni wird es wärmer. Der Schnee schmilzt, und mehr Schmelzwasser fliesst durch den Fluss."
+        },
+        {
+          "type": "p",
+          "text": "Dieses Schmelzwasser ist wichtig für den Bodensee. Denn im Sommer verdunstet viel. Das Schmelzwasser gleicht diesen Verlust aus."
+        },
+        {
+          "type": "p",
+          "text": "Tobias Wechsler: «Hinzu kommt auch, dass das Wasser aus der Schneedecke sehr kalt ist. Das führt auch dazu, dass sich die Fliessgewässer, wenn der Schneeanteil noch grösser ist, weniger schnell erwärmen.»"
+        },
+        {
+          "type": "p",
+          "text": "Diesen Winter hat der Schneespeicher aber nicht gereicht."
+        }
+      ],
+      "ready": 3000
+    },
+    {
+      "id": "7",
+      "role": "short full article",
+      "kicker": "Dok-Film «NZZ Format»",
+      "title": "Humanoide Roboter: Chinas Milliarden-Wette auf die Zukunft",
+      "lead": "Menschenähnliche Haushaltshelfer und Roboterhunde als Paketboten: Was lange nach Science-Fiction klang, wird rasant Realität. Vor allem China investiert Milliarden in KI-gesteuerte Maschinen – mit dem klaren Ziel, zur globalen Roboter-Supermacht aufzusteigen. «NZZ Format» blickt hinter den Tech-Hype.",
+      "author": "Claudia Stahel",
+      "published": "2026-09-18",
+      "source": "https://www.nzz.ch/video/format/die-roboter-kommen-chinas-aufstieg-zur-roboter-supermacht-ld.10022769",
+      "image": "https://img-msp-prod.nzz.ch/2026/09/08/6b0d0c78-9585-407f-879c-fa2d0f185710.jpg?width=480&fit=bounds&quality=75&crop=1920,1080,x0,y0&wmark=nzz",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Humanoide Roboter sind auf dem Vormarsch. Beim Roboter-Halbmarathon in Peking treten Maschinen gegen Menschen an. Doch das Rennen ist weit mehr als ein skurriler Wettkampf: China nutzt die globale Bühne gezielt, um sich als führende Technologienation zu präsentieren und seinen Führungsanspruch in der Robotik zu zementieren."
+        },
+        {
+          "type": "p",
+          "text": "Die Erwartungen an die humanoide Robotik sind weltweit gigantisch. Die Technologie soll helfen, den sich abzeichnenden Fachkräftemangel zu lindern, Lücken in der Altenpflege zu schliessen und langfristig die Wirtschaft anzukurbeln."
+        },
+        {
+          "type": "p",
+          "text": "Nicht nur China, auch die USA setzen voll auf dieses Potenzial. Doch während amerikanische Pioniere wie Tesla ihre Modelle noch ausgiebig testen, hat Peking bereits mit der industriellen Massenproduktion begonnen. Und auch in der Schweiz wird investiert. Das Zürcher Startup Rivr entwickelt intelligente Lieferroboter – bauen will es diese aber in Fernost."
+        },
+        {
+          "type": "p",
+          "text": "«NZZ Format» zeigt, wie weit China in der humanoiden Robotik tatsächlich schon ist. Wo verläuft die Grenze zwischen Hype und Realität? Und wer wird das globale, milliardenschwere Wettrennen um die technologische Vorherrschaft gewinnen?"
+        },
+        {
+          "type": "p",
+          "text": "🎬 «NZZ Format» zum Streamen: Hier können Sie all unsere Filme jederzeit abrufen."
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "role": "one-screen brief (lead only)",
+      "kicker": "Dok-Film «NZZ Format»",
+      "title": "Löschflugzeuge in Europa: Was hilft gegen Megabrände?",
+      "lead": "Spätestens seit diesem Sommer ist klar: Es gibt immer mehr und grössere Waldbrände in Europa. Doch viele Löschflugzeuge sind alt. Welche Flugzeuge braucht Europa jetzt?",
+      "author": "Roman Hodel",
+      "published": "2026-09-25",
+      "source": "https://www.nzz.ch/video/format/zu-wenige-loeschflugzeuge-was-hilft-gegen-die-neuen-megabraende-ld.10022737",
+      "image": "https://img-msp-prod.nzz.ch/2026/09/07/c37dd671-c3f6-4d48-a10c-37b66068f6f7.jpg?width=480&fit=bounds&quality=75&crop=1745,982,x128,y37&wmark=nzz",
+      "blocks": [],
+      "short": true
+    }
+  ]
+}

@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Front page</title>
+    <!-- front-config -->
+    <style>
+      :root {
+        --font-scale: 1;
+        /* The fallback stacks the real pages declare. The brand typefaces are licensed and not part of the kit. */
+        --serif: 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman', 'Droid Serif', Times, serif;
+        --sans: -apple-system, system-ui, 'Avenir Next', Avenir, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial,
+          sans-serif;
+      }
+      html {
+        font-size: calc(16px * var(--font-scale));
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        --bg: #ffffff;
+        --text: rgb(18, 18, 18);
+        --soft: rgb(67, 67, 67);
+        --muted: rgba(5, 5, 5, 0.57);
+        --rule: rgb(222, 222, 222);
+        --ink: rgb(44, 50, 189);
+        --tint: rgb(245, 245, 245);
+        font: 1rem/1.5 var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        -webkit-text-size-adjust: 100%;
+      }
+      body.dark {
+        --bg: #000000;
+        --text: rgb(245, 245, 245);
+        --soft: rgb(222, 222, 222);
+        --muted: rgba(255, 255, 255, 0.57);
+        --rule: rgba(250, 250, 250, 0.21);
+        --ink: rgb(147, 151, 230);
+        --tint: rgba(250, 250, 250, 0.09);
+      }
+      a {
+        color: inherit;
+      }
+      .container {
+        padding: 16px;
+      }
+      #status {
+        font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace;
+        background: var(--tint);
+        border: 1px dashed var(--rule);
+        border-radius: 4px;
+        padding: 8px 10px;
+        margin: 0;
+        white-space: pre-wrap;
+      }
+      h1 {
+        font: 700 2.5rem/1 var(--serif);
+        letter-spacing: 0.04em;
+        text-align: center;
+        margin: 24px 0 0;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--text);
+      }
+      nav[aria-label='Sections'] {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0 16px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      nav a,
+      .links a {
+        font: 0.875rem/1.25rem var(--sans);
+        padding: 6px 0;
+        text-underline-offset: 3px;
+      }
+      h2 {
+        font: 500 1.25rem/1.875rem var(--sans);
+        border-top: 1px solid var(--text);
+        padding-top: 16px;
+        margin: 2rem 0 0;
+      }
+      nav + h2 {
+        border-top: 0;
+      }
+      .teaser {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--rule);
+        color: inherit;
+        text-decoration: none;
+      }
+      .teaser.large {
+        display: block;
+      }
+      .teaser .thumb {
+        flex: none;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        background: var(--tint);
+      }
+      .teaser.large .thumb {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+      }
+      .teaser .body {
+        display: block;
+        min-width: 0;
+      }
+      .teaser .kicker {
+        display: block;
+        font: 500 0.75rem/1rem var(--sans);
+        color: var(--ink);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .teaser .title {
+        display: block;
+        font: 500 1.125rem/1.5rem var(--serif);
+      }
+      .teaser.large .title {
+        font-size: 1.375rem;
+        line-height: 1.875rem;
+      }
+      .teaser .lead {
+        display: block;
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--soft);
+        margin-top: 8px;
+      }
+      .teaser .byline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 12px;
+        margin-top: 8px;
+        font: 300 0.75rem/1rem var(--sans);
+        color: var(--muted);
+      }
+      .teaser .byline .time {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .teaser .meta {
+        display: block;
+        font: 500 0.75rem/1rem var(--sans);
+        color: var(--ink);
+        margin-top: 4px;
+        min-height: 1rem;
+      }
+      .teaser.read .title {
+        color: var(--muted);
+      }
+      .ad-slot {
+        margin-top: 24px;
+      }
+      .ad-slot .ad-label {
+        display: block;
+        font: 500 11px/16px var(--sans);
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .ad-slot .ad-box {
+        box-sizing: border-box;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 16px;
+        text-align: center;
+        font: 14px/20px var(--sans);
+      }
+      .ad-slot .ad-box.filled {
+        background: linear-gradient(135deg, rgb(44, 50, 189), rgb(99, 123, 222));
+        color: #ffffff;
+      }
+      .ad-slot .ad-box.empty {
+        border: 1px dashed var(--rule);
+        color: var(--muted);
+      }
+      .placeholder {
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--muted);
+        padding: 16px 0;
+        margin: 0;
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        padding-top: 8px;
+      }
+      #end {
+        margin-top: 28px;
+        padding-top: 8px;
+        border-top: 1px solid var(--rule);
+        font: 12px ui-monospace, Menlo, Consolas, monospace;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <div class="container" id="container">
+      <pre id="status" aria-label="Page status"></pre>
+
+      <h1>NZZ</h1>
+
+      <nav aria-label="Sections">
+        <a href="#top-stories">Jump to: Top stories</a>
+        <a href="#more-stories">Jump to: More stories</a>
+        <a href="#test-pages">Jump to: Test pages</a>
+      </nav>
+
+      <h2 id="top-stories">Top stories</h2>
+      <div id="top"></div>
+
+      <div class="ad-slot" id="ad-slot"></div>
+
+      <h2 id="more-stories">More stories</h2>
+      <div id="more"><p class="placeholder">Loading more stories…</p></div>
+
+      <h2 id="elsewhere">Elsewhere</h2>
+      <div class="links">
+        <a href="https://example.org/">Regional news network (external)</a>
+        <a id="partner" href="#">Syndication partner (external)</a>
+        <a href="mailto:newsletter@example.org">Subscribe to the newsletter</a>
+      </div>
+
+      <h2 id="test-pages">Test pages</h2>
+      <div id="tests"></div>
+
+      <div id="end">— end of front page —</div>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var PROTOCOL = 1;
+
+        // Written into the page by the server. The fallback only matters when the file is opened directly.
+        var config = window.__FRONT__ || {
+          media: '/media/',
+          origin: location.origin,
+          top: [],
+          more: [],
+          tests: [],
+        };
+
+        // The consent string is read exactly once, when the document starts. Nothing delivers it later.
+        var consentMatch = location.hash.match(/(?:^#|&)consent=([^&]*)/);
+        var consent = consentMatch ? decodeURIComponent(consentMatch[1]) : null;
+
+        // A new id for every document, so a real reload is distinguishable from an in-page navigation.
+        var documentId = Math.random().toString(16).slice(2, 6);
+        var PAGE_CONTEXT = { page: 'front', document: documentId };
+
+        // The web team's tracker. Inside the app it sends nothing itself: it hands each event to the app over the
+        // message channel, and the app's tracker sends it. It adds the app's context when the app gave one.
+        function webTrack(command, event) {
+          var context = [{ schema: 'iglu:com.example.news/page/jsonschema/1-0-0', data: PAGE_CONTEXT }];
+          var appContext = window.appContext;
+
+          if (appContext && typeof appContext === 'object') {
+            context.push({ schema: 'iglu:com.example.news/app/jsonschema/1-0-0', data: appContext });
+          }
+
+          post({ command: command, event: event, context: context });
+        }
+
+        function appContextSummary() {
+          var appContext = window.appContext;
+          if (!appContext || typeof appContext !== 'object') return 'none';
+
+          return Object.keys(appContext)
+            .map(function (key) {
+              return appContext[key];
+            })
+            .join(' · ');
+        }
+
+        function trackTeaserTaps(selector) {
+          document.addEventListener('click', function (event) {
+            var teaser = event.target.closest ? event.target.closest(selector) : null;
+            if (!teaser) return;
+
+            var match = (teaser.getAttribute('href') || '').match(/\/article\/([\w-]+)/);
+            if (!match) return;
+
+            webTrack('trackSelfDescribingEvent', {
+              schema: 'iglu:com.example.news/teaser_click/jsonschema/1-0-0',
+              data: { articleId: match[1], position: Array.prototype.indexOf.call(document.querySelectorAll(selector), teaser) },
+            });
+          });
+        }
+
+        var container = document.getElementById('container');
+        var statusBox = document.getElementById('status');
+
+        var isReady = false;
+        var readySent = 0;
+        var ignoredBeforeReady = 0;
+        var ignoredInvalid = 0;
+        var lastReportedHeight = -1;
+        var bookmarkedIds = [];
+        var readIds = [];
+
+        var applied = {
+          'app:fontScale': { count: 0, shown: '–' },
+          'app:theme': { count: 0, shown: '–' },
+          'app:bookmarks': { count: 0, shown: '–' },
+          'app:read': { count: 0, shown: '–' },
+        };
+
+        function post(message) {
+          var bridge = window.ReactNativeWebView;
+
+          // Not inside the app (opened in a desktop browser): nothing to talk to.
+          if (!bridge) return;
+
+          bridge.postMessage(typeof message === 'string' ? message : JSON.stringify(message));
+        }
+
+        // Ads only load when the page started with the reader's consent. Without it the slot stays empty.
+        function fillAdSlot() {
+          var slot = document.getElementById('ad-slot');
+          if (!slot) return;
+
+          var label = document.createElement('span');
+          label.className = 'ad-label';
+          label.textContent = 'Advertisement';
+
+          var box = document.createElement('div');
+          box.className = consent === null ? 'ad-box empty' : 'ad-box filled';
+
+          if (consent === null) {
+            box.textContent = 'No ad. This page was loaded without the reader\u2019s consent.';
+          } else {
+            var name = document.createElement('strong');
+            name.textContent = 'Partner ad';
+            var detail = document.createElement('span');
+            detail.textContent = 'Shown with consent ' + consent;
+            box.appendChild(name);
+            box.appendChild(detail);
+          }
+
+          slot.textContent = '';
+          slot.appendChild(label);
+          slot.appendChild(box);
+        }
+
+        function render() {
+          statusBox.textContent = [
+            'PAGE STATUS (front page)',
+            'protocol     ' + PROTOCOL,
+            'document     ' + documentId,
+            'ready sent   ' + (readySent ? '×' + readySent : 'not yet'),
+            'font scale   ' + applied['app:fontScale'].shown + ' · applied ×' + applied['app:fontScale'].count,
+            'theme        ' + applied['app:theme'].shown + ' · applied ×' + applied['app:theme'].count,
+            'bookmarks    ' + applied['app:bookmarks'].shown + ' · applied ×' + applied['app:bookmarks'].count,
+            'read         ' + applied['app:read'].shown + ' · applied ×' + applied['app:read'].count,
+            'ignored      ' + ignoredBeforeReady + ' before ready · ' + ignoredInvalid + ' invalid',
+            'consent      ' + (consent === null ? 'none' : consent) + ' (read once, at load)',
+            'app context  ' + appContextSummary(),
+            'query        ' + (location.search || 'none'),
+          ].join('\n');
+        }
+
+        function isStringList(value) {
+          return (
+            Array.isArray(value) &&
+            value.every(function (id) {
+              return typeof id === 'string';
+            })
+          );
+        }
+
+        function refreshTeasers() {
+          Array.prototype.forEach.call(document.querySelectorAll('.teaser'), function (teaser) {
+            var id = teaser.dataset.id;
+            var isRead = readIds.indexOf(id) !== -1;
+            var flags = [];
+
+            if (bookmarkedIds.indexOf(id) !== -1) flags.push('★ Bookmarked');
+            if (isRead) flags.push('Read');
+            if (teaser.dataset.updated === 'true') flags.push('Updated');
+
+            teaser.classList.toggle('read', isRead);
+            teaser.querySelector('.meta').textContent = flags.join(' · ');
+          });
+        }
+
+        var apply = {
+          'app:fontScale': function (detail) {
+            if (typeof detail.value !== 'number' || !isFinite(detail.value) || detail.value <= 0) return null;
+
+            document.documentElement.style.setProperty('--font-scale', String(detail.value));
+
+            return String(detail.value);
+          },
+          'app:theme': function (detail) {
+            if (detail.value !== 'light' && detail.value !== 'dark') return null;
+
+            document.body.classList.toggle('dark', detail.value === 'dark');
+
+            return detail.value;
+          },
+          'app:bookmarks': function (detail) {
+            if (!isStringList(detail.ids)) return null;
+
+            bookmarkedIds = detail.ids.slice();
+            refreshTeasers();
+
+            return bookmarkedIds.length ? bookmarkedIds.join(', ') : '(none)';
+          },
+          'app:read': function (detail) {
+            if (!isStringList(detail.ids)) return null;
+
+            readIds = detail.ids.slice();
+            refreshTeasers();
+
+            return readIds.length ? readIds.join(', ') : '(none)';
+          },
+        };
+
+        // The page only acts on app state once it is ready. Anything sent earlier is counted and dropped.
+        Object.keys(apply).forEach(function (name) {
+          window.addEventListener(name, function (event) {
+            if (!isReady) {
+              ignoredBeforeReady += 1;
+              render();
+
+              return;
+            }
+
+            var shown = apply[name](event.detail || {});
+
+            if (shown === null) {
+              ignoredInvalid += 1;
+            } else {
+              applied[name].count += 1;
+              applied[name].shown = shown;
+            }
+
+            render();
+          });
+        });
+
+        var CLOCK_ICON =
+          '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor"/></svg>';
+
+        function span(className, text) {
+          var element = document.createElement('span');
+          element.className = className;
+          if (text) element.textContent = text;
+
+          return element;
+        }
+
+        function teaser(article, options) {
+          var link = document.createElement('a');
+          var path = '/article/' + article.id + '?ref=front';
+          var large = !!(options && options.large);
+
+          link.className = large ? 'teaser large' : 'teaser';
+          link.href = path;
+          link.dataset.id = article.id;
+          link.dataset.updated = String(article.revision > 0);
+
+          // Width and height are set up front, so a picture arriving late never changes the page height.
+          var image = document.createElement('img');
+          image.className = 'thumb';
+          image.alt = '';
+          image.width = large ? 960 : 72;
+          image.height = large ? 540 : 72;
+          if (article.image) image.src = large && article.large ? article.large : article.image;
+          link.appendChild(image);
+
+          var body = span('body');
+          if (article.kicker) body.appendChild(span('kicker', article.kicker));
+          body.appendChild(span('title', article.title));
+          if (large && article.lead) body.appendChild(span('lead', article.lead));
+
+          var byline = span('byline', article.author);
+          if (article.minutes) byline.insertAdjacentHTML('beforeend', '<span class="time">' + CLOCK_ICON + article.minutes + ' min</span>');
+          body.appendChild(byline);
+
+          // Bookmarked, read and updated marks go here.
+          body.appendChild(span('meta'));
+          link.appendChild(body);
+
+          // An older teaser component: it announces the tap AND remains an ordinary link.
+          if (options && options.announces) {
+            link.addEventListener('click', function () {
+              post({ type: 'openArticle', path: path });
+            });
+          }
+
+          return link;
+        }
+
+        function fill(slot, articles) {
+          slot.textContent = '';
+          articles.forEach(function (article, index) {
+            slot.appendChild(
+              teaser(article, {
+                large: slot.id === 'top' && index === 0,
+                announces: article.id === '3',
+              }),
+            );
+          });
+          refreshTeasers();
+        }
+
+        function reportHeight(force) {
+          var height = Math.ceil(container.getBoundingClientRect().height);
+          if (!force && height === lastReportedHeight) return;
+
+          lastReportedHeight = height;
+          post({ type: 'height', value: height });
+        }
+
+        function sendReady() {
+          readySent += 1;
+          post({ type: 'ready', protocol: PROTOCOL, page: 'front' });
+          render();
+        }
+
+        // Stands in for the third-party scripts that share the message channel on a real page.
+        function startNoise() {
+          setTimeout(function () {
+            post({ type: 'height', value: 'auto' });
+          }, 1500);
+
+          setInterval(function () {
+            post('tp:heartbeat');
+            post({ type: 'ad:viewable', slot: 'top' });
+            post({ event: 'metrics', at: Date.now() });
+          }, 4000);
+        }
+
+        function becomeReady() {
+          isReady = true;
+          sendReady();
+          reportHeight(true);
+
+          new ResizeObserver(function () {
+            reportHeight(false);
+          }).observe(container);
+
+          setTimeout(function () {
+            fill(document.getElementById('more'), config.more);
+          }, 2000);
+
+          startNoise();
+        }
+
+        // One page view per document, as soon as it starts.
+        webTrack('trackPageView', { pageUrl: location.href.split('#')[0], pageTitle: document.title, referrer: document.referrer });
+        trackTeaserTaps('a.teaser');
+
+        fillAdSlot();
+        fill(document.getElementById('top'), config.top);
+        fill(document.getElementById('tests'), config.tests);
+
+        try {
+          var origin = new URL(config.origin);
+          document.getElementById('partner').href =
+            origin.protocol + '//' + origin.hostname + '.example.org' + (origin.port ? ':' + origin.port : '') + '/article/9';
+        } catch (error) {
+          document.getElementById('partner').href = 'https://partner.example.org/article/9';
+        }
+
+        render();
+
+        setTimeout(becomeReady, 300 + Math.round(Math.random() * 900));
+      })();
+    </script>
+  </body>
+</html>

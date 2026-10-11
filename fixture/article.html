@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Article</title>
+    <!-- article-config -->
+    <script>
+      // Space covered by the app's own chrome. Read before anything is drawn, so the first paint is already right.
+      (function () {
+        var insets = window.appInsets;
+        var valid =
+          !!insets &&
+          typeof insets.top === 'number' &&
+          typeof insets.bottom === 'number' &&
+          isFinite(insets.top) &&
+          isFinite(insets.bottom) &&
+          insets.top >= 0 &&
+          insets.bottom >= 0;
+
+        window.__insetsAtStart = valid;
+
+        if (valid) {
+          document.documentElement.style.setProperty('--inset-top', insets.top + 'px');
+          document.documentElement.style.setProperty('--inset-bottom', insets.bottom + 'px');
+        }
+      })();
+    </script>
+    <style>
+      :root {
+        --font-scale: 1;
+        /* The fallback stacks the real pages declare. The brand typefaces are licensed and not part of the kit. */
+        --serif: 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman', 'Droid Serif', Times, serif;
+        --sans: -apple-system, system-ui, 'Avenir Next', Avenir, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial,
+          sans-serif;
+      }
+      html {
+        font-size: calc(16px * var(--font-scale));
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        --bg: #ffffff;
+        --text: rgb(18, 18, 18);
+        --soft: rgb(67, 67, 67);
+        --muted: rgba(5, 5, 5, 0.57);
+        --rule: rgb(222, 222, 222);
+        --ink: rgb(44, 50, 189);
+        --tint: rgb(245, 245, 245);
+        font: 1rem/1.5 var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        padding-top: var(--inset-top, 0px);
+        padding-bottom: var(--inset-bottom, 0px);
+        -webkit-text-size-adjust: 100%;
+      }
+      body.dark {
+        --bg: #000000;
+        --text: rgb(245, 245, 245);
+        --soft: rgb(222, 222, 222);
+        --muted: rgba(255, 255, 255, 0.57);
+        --rule: rgba(250, 250, 250, 0.21);
+        --ink: rgb(147, 151, 230);
+        --tint: rgba(250, 250, 250, 0.09);
+      }
+      [id] {
+        scroll-margin-top: var(--inset-top, 0px);
+      }
+      a {
+        color: inherit;
+      }
+      .container,
+      .more-stories {
+        padding: 0 16px;
+      }
+      .container {
+        padding-top: 16px;
+      }
+      .kicker {
+        display: block;
+        margin: 0 0 8px;
+        font: 500 0.875rem/1rem var(--sans);
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      h1 {
+        font: 500 1.375rem/1.875rem var(--serif);
+        margin: 0 0 8px;
+      }
+      .lead {
+        font: 1rem/1.625rem var(--sans);
+        margin: 0 0 16px;
+      }
+      #byline {
+        font: 0.875rem/1.25rem var(--sans);
+        margin: 0;
+      }
+      #byline .authors {
+        font-weight: 500;
+        margin-right: 8px;
+      }
+      #byline time {
+        color: var(--muted);
+      }
+      #revision {
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--ink);
+        margin: 8px 0 0;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        background: var(--rule);
+        margin: 16px 0;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .pill {
+        font: 500 0.875rem/1.25rem var(--sans);
+        min-height: 32px;
+        padding: 5px 14px;
+        margin: 0;
+        border: 1px solid var(--text);
+        border-radius: 16px;
+        background: transparent;
+        color: var(--text);
+      }
+      #status {
+        font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace;
+        background: var(--tint);
+        border: 1px dashed var(--rule);
+        border-radius: 4px;
+        padding: 8px 10px;
+        margin: 0;
+        white-space: pre-wrap;
+      }
+      nav[aria-label='Contents'] {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 16px;
+        margin: 4px 0 20px;
+      }
+      nav[aria-label='Contents'] a,
+      .links a {
+        font: 0.875rem/1.25rem var(--sans);
+        padding: 6px 0;
+        text-underline-offset: 3px;
+      }
+      .articlecomponent.text p {
+        font: 1.125rem/1.75rem var(--serif);
+        margin: 0 0 2.5rem;
+      }
+      .articlecomponent.text h3 {
+        font: 500 1.25rem/1.75rem var(--serif);
+        text-align: center;
+        margin: 4rem 16px;
+      }
+      img.figure {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 0 2.5rem;
+      }
+      .ad-slot {
+        margin: 0 0 2.5rem;
+      }
+      .ad-slot .ad-label {
+        display: block;
+        font: 500 11px/16px var(--sans);
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .ad-slot .ad-box {
+        box-sizing: border-box;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 16px;
+        text-align: center;
+        font: 14px/20px var(--sans);
+      }
+      .ad-slot .ad-box.filled {
+        background: linear-gradient(135deg, rgb(44, 50, 189), rgb(99, 123, 222));
+        color: #ffffff;
+      }
+      .ad-slot .ad-box.empty {
+        border: 1px dashed var(--rule);
+        color: var(--muted);
+      }
+      .credit {
+        font: 0.75rem/1rem var(--sans);
+        color: var(--muted);
+        margin: -1rem 0 0;
+      }
+      .credit a {
+        color: inherit;
+      }
+      .ask {
+        margin: 2.5rem 0;
+        padding: 20px 16px;
+        min-height: 440px;
+        box-sizing: border-box;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        background: var(--tint);
+      }
+      .ask .badge {
+        display: inline-block;
+        font: 500 0.75rem/1rem var(--sans);
+        color: var(--ink);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .ask h3 {
+        margin: 0 0 8px;
+        font: 500 1.25rem/1.75rem var(--sans);
+      }
+      .ask p {
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--soft);
+        margin: 0 0 16px;
+      }
+      .ask .question {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin: 0 0 8px;
+        background: var(--bg);
+        border-color: var(--rule);
+        border-radius: 8px;
+        font-weight: 400;
+        padding: 10px 14px;
+      }
+      .ask .input {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border: 1px solid var(--text);
+        border-radius: 24px;
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--muted);
+        background: var(--bg);
+      }
+      .section-title {
+        font: 500 1.25rem/1.75rem var(--sans);
+        margin: 2.5rem 0 1.5rem;
+      }
+      .card {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--rule);
+        color: inherit;
+        text-decoration: none;
+      }
+      .card .thumb {
+        flex: none;
+        width: 72px;
+        height: 72px;
+        background: var(--tint) center / cover no-repeat;
+      }
+      .card .body {
+        min-width: 0;
+      }
+      .card .kicker {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+      }
+      .card .title {
+        display: block;
+        font: 500 1.125rem/1.5rem var(--serif);
+      }
+      .card .meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 12px;
+        margin-top: 8px;
+        font: 300 0.75rem/1rem var(--sans);
+        color: var(--muted);
+      }
+      .card .meta .time {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 12px;
+      }
+      .more-stories h2 {
+        font: 500 1.25rem/1.875rem var(--sans);
+        border-top: 1px solid var(--text);
+        padding-top: 16px;
+        margin: 2.5rem 0 8px;
+      }
+      #more-status {
+        font: 0.875rem/1.25rem var(--sans);
+        color: var(--muted);
+      }
+      #end {
+        margin: 28px 16px 16px;
+        padding-top: 8px;
+        border-top: 1px solid var(--rule);
+        font: 12px ui-monospace, Menlo, Consolas, monospace;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <div class="container container--article" id="container">
+      <span class="kicker" id="kicker" hidden></span>
+      <h1 id="title"></h1>
+      <p class="lead" id="lead" hidden></p>
+      <p id="byline"><span class="authors"></span><time></time></p>
+      <p id="revision" hidden></p>
+
+      <hr />
+
+      <div class="actions">
+        <button id="bookmark" class="pill" type="button">☆ Bookmark</button>
+        <button id="jump" class="pill" type="button">Jump (script)</button>
+      </div>
+
+      <pre id="status" aria-label="Page status"></pre>
+
+      <nav aria-label="Contents">
+        <a href="#start">Contents: Start</a>
+        <a href="#middle" id="contents-middle">Contents: Middle</a>
+        <a href="#related">Contents: Related</a>
+      </nav>
+
+      <!-- article-body -->
+
+      <div id="ask-slot"></div>
+
+      <h2 class="section-title" id="related">Related</h2>
+      <a class="card" href="/article/2?ref=related">
+        <span class="thumb" style="background-image: url('{{image-2}}')"></span>
+        <span class="body">
+          <span class="kicker">Plain link</span>
+          <span class="title">{{title-2}}</span>
+          <span class="meta">{{meta-2}}</span>
+        </span>
+      </a>
+      <a class="card" id="teaser" href="/article/3?ref=teaser">
+        <span class="thumb" style="background-image: url('{{image-3}}')"></span>
+        <span class="body">
+          <span class="kicker">Link + message</span>
+          <span class="title">{{title-3}}</span>
+          <span class="meta">{{meta-3}}</span>
+        </span>
+      </a>
+      <div class="links">
+        <a href="https://example.org/">Regional grant scheme (external)</a>
+        <a href="https://example.org/window" target="_blank" rel="noopener">Tide tables (external, new window)</a>
+        <a id="partner" href="#">Syndication partner (external)</a>
+        <a href="mailto:newsdesk@example.org">Write to the newsdesk</a>
+      </div>
+    </div>
+
+    <section class="more-stories" id="more-stories" aria-label="More from the newsroom">
+      <h2>More from the newsroom</h2>
+      <div id="more-list"></div>
+      <p id="more-status"></p>
+    </section>
+
+    <div id="end" hidden>— end of page —</div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var PROTOCOL = 1;
+
+        // Written into the page by the server. The fallback only matters when the file is opened directly.
+        var config = window.__ARTICLE__ || {
+          id: '1',
+          kicker: null,
+          title: 'Article',
+          lead: '',
+          revision: 0,
+          version: 'unknown',
+          source: 'online',
+          media: '/media/',
+          origin: location.origin,
+          ready: 'auto',
+          short: false,
+          author: '',
+          published: '',
+          others: [],
+        };
+
+        var articleId = config.id;
+        var MORE_BATCH = 5;
+        var MORE_BATCHES = 8;
+
+        // The consent string is read exactly once, when the document starts. Nothing delivers it later.
+        var consentMatch = location.hash.match(/(?:^#|&)consent=([^&]*)/);
+        var consent = consentMatch ? decodeURIComponent(consentMatch[1]) : null;
+
+        // A new id for every document, so a real reload is distinguishable from an in-page navigation.
+        var documentId = Math.random().toString(16).slice(2, 6);
+        var PAGE_CONTEXT = { page: 'article', articleId: articleId, document: documentId, source: config.source };
+
+        // The web team's tracker. Inside the app it sends nothing itself: it hands each event to the app over the
+        // message channel, and the app's tracker sends it. It adds the app's context when the app gave one.
+        function webTrack(command, event) {
+          var context = [{ schema: 'iglu:com.example.news/page/jsonschema/1-0-0', data: PAGE_CONTEXT }];
+          var appContext = window.appContext;
+
+          if (appContext && typeof appContext === 'object') {
+            context.push({ schema: 'iglu:com.example.news/app/jsonschema/1-0-0', data: appContext });
+          }
+
+          post({ command: command, event: event, context: context });
+        }
+
+        function appContextSummary() {
+          var appContext = window.appContext;
+          if (!appContext || typeof appContext !== 'object') return 'none';
+
+          return Object.keys(appContext)
+            .map(function (key) {
+              return appContext[key];
+            })
+            .join(' · ');
+        }
+
+        function trackTeaserTaps(selector) {
+          document.addEventListener('click', function (event) {
+            var teaser = event.target.closest ? event.target.closest(selector) : null;
+            if (!teaser) return;
+
+            var match = (teaser.getAttribute('href') || '').match(/\/article\/([\w-]+)/);
+            if (!match) return;
+
+            webTrack('trackSelfDescribingEvent', {
+              schema: 'iglu:com.example.news/teaser_click/jsonschema/1-0-0',
+              data: { articleId: match[1], position: Array.prototype.indexOf.call(document.querySelectorAll(selector), teaser) },
+            });
+          });
+        }
+
+        var container = document.getElementById('container');
+        var statusBox = document.getElementById('status');
+        var bookmarkButton = document.getElementById('bookmark');
+
+        var isReady = false;
+        var isBookmarked = false;
+        var readySent = 0;
+        var ignoredBeforeReady = 0;
+        var ignoredInvalid = 0;
+        var lastReportedHeight = -1;
+        var insetEvents = 0;
+        var endOfTextSeenAt = null;
+        var moreBatches = 0;
+        var moreLoading = false;
+
+        var applied = {
+          'app:fontScale': { count: 0, shown: '–' },
+          'app:theme': { count: 0, shown: '–' },
+          'app:bookmarks': { count: 0, shown: '–' },
+        };
+
+        function post(message) {
+          var bridge = window.ReactNativeWebView;
+
+          // Not inside the app (opened in a desktop browser): nothing to talk to.
+          if (!bridge) return;
+
+          bridge.postMessage(typeof message === 'string' ? message : JSON.stringify(message));
+        }
+
+        function bookmarkTapMessage() {
+          return { type: 'toggleBookmark', articleId: articleId };
+        }
+
+        function insetValue(name) {
+          var value = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+
+          return isFinite(value) ? value : 0;
+        }
+
+        function insetSummary() {
+          var top = insetValue('--inset-top');
+          var bottom = insetValue('--inset-bottom');
+          var parts = [top + ' / ' + bottom, 'at start: ' + (window.__insetsAtStart ? 'yes' : 'no')];
+
+          if (insetEvents) parts.push('events ×' + insetEvents);
+
+          return parts.join(' · ');
+        }
+
+        function imageSummary() {
+          var total = document.images.length;
+          var loaded = 0;
+          var failed = 0;
+
+          for (var index = 0; index < total; index += 1) {
+            var image = document.images[index];
+
+            if (!image.complete) continue;
+            if (image.naturalWidth > 0) loaded += 1;
+            else failed += 1;
+          }
+
+          return loaded + ' of ' + total + ' loaded' + (failed ? ' · ' + failed + ' failed' : '');
+        }
+
+        var CLOCK_ICON =
+          '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor"/></svg>';
+
+        function clock(date) {
+          return date.toTimeString().slice(0, 8);
+        }
+
+        // Ads only load when the page started with the reader's consent. Without it the slot stays empty.
+        function fillAdSlot() {
+          var slot = document.getElementById('ad-slot');
+          if (!slot) return;
+
+          var label = document.createElement('span');
+          label.className = 'ad-label';
+          label.textContent = 'Advertisement';
+
+          var box = document.createElement('div');
+          box.className = consent === null ? 'ad-box empty' : 'ad-box filled';
+
+          if (consent === null) {
+            box.textContent = 'No ad. This page was loaded without the reader\u2019s consent.';
+          } else {
+            var name = document.createElement('strong');
+            name.textContent = 'Partner ad';
+            var detail = document.createElement('span');
+            detail.textContent = 'Shown with consent ' + consent;
+            box.appendChild(name);
+            box.appendChild(detail);
+          }
+
+          slot.textContent = '';
+          slot.appendChild(label);
+          slot.appendChild(box);
+        }
+
+        function render() {
+          statusBox.textContent = [
+            'PAGE STATUS (article)',
+            'source       ' + (config.source === 'saved' ? 'saved copy' : 'online') + ', protocol ' + PROTOCOL,
+            'version      ' + config.version + ' (revision ' + config.revision + ')',
+            'document     ' + documentId,
+            'ready sent   ' + (readySent ? '×' + readySent : 'not yet'),
+            'font scale   ' + applied['app:fontScale'].shown + ' · applied ×' + applied['app:fontScale'].count,
+            'theme        ' + applied['app:theme'].shown + ' · applied ×' + applied['app:theme'].count,
+            'bookmarks    ' + applied['app:bookmarks'].shown + ' · applied ×' + applied['app:bookmarks'].count,
+            'ignored      ' + ignoredBeforeReady + ' before ready · ' + ignoredInvalid + ' invalid',
+            'insets       ' + insetSummary(),
+            'end of text  ' + (endOfTextSeenAt ? 'seen at ' + clock(endOfTextSeenAt) : 'not seen yet'),
+            'images       ' + imageSummary(),
+            'consent      ' + (consent === null ? 'none' : consent) + ' (read once, at load)',
+            'app context  ' + appContextSummary(),
+            'query        ' + (location.search || 'none'),
+          ].join('\n');
+        }
+
+        var apply = {
+          'app:fontScale': function (detail) {
+            if (typeof detail.value !== 'number' || !isFinite(detail.value) || detail.value <= 0) return null;
+
+            document.documentElement.style.setProperty('--font-scale', String(detail.value));
+
+            return String(detail.value);
+          },
+          'app:theme': function (detail) {
+            if (detail.value !== 'light' && detail.value !== 'dark') return null;
+
+            document.body.classList.toggle('dark', detail.value === 'dark');
+
+            return detail.value;
+          },
+          'app:bookmarks': function (detail) {
+            var ids = detail.ids;
+            var valid =
+              Array.isArray(ids) &&
+              ids.every(function (id) {
+                return typeof id === 'string';
+              });
+            if (!valid) return null;
+
+            isBookmarked = ids.indexOf(articleId) !== -1;
+            bookmarkButton.textContent = isBookmarked ? '★ Bookmarked' : '☆ Bookmark';
+
+            return ids.length ? ids.join(', ') : '(none)';
+          },
+        };
+
+        // The page only acts on app state once it is ready. Anything sent earlier is counted and dropped.
+        Object.keys(apply).forEach(function (name) {
+          window.addEventListener(name, function (event) {
+            if (!isReady) {
+              ignoredBeforeReady += 1;
+              render();
+
+              return;
+            }
+
+            var shown = apply[name](event.detail || {});
+
+            if (shown === null) {
+              ignoredInvalid += 1;
+            } else {
+              applied[name].count += 1;
+              applied[name].shown = shown;
+            }
+
+            render();
+          });
+        });
+
+        // Insets can also change later (rotation, a bar appearing). Like all app events, only once ready.
+        window.addEventListener('app:insets', function (event) {
+          var detail = event.detail || {};
+
+          if (!isReady) {
+            ignoredBeforeReady += 1;
+            render();
+
+            return;
+          }
+
+          var valid =
+            typeof detail.top === 'number' &&
+            typeof detail.bottom === 'number' &&
+            isFinite(detail.top) &&
+            isFinite(detail.bottom) &&
+            detail.top >= 0 &&
+            detail.bottom >= 0;
+
+          if (!valid) {
+            ignoredInvalid += 1;
+          } else {
+            insetEvents += 1;
+            document.documentElement.style.setProperty('--inset-top', detail.top + 'px');
+            document.documentElement.style.setProperty('--inset-bottom', detail.bottom + 'px');
+          }
+
+          render();
+        });
+
+        function reportHeight(force) {
+          var height = Math.ceil(document.documentElement.scrollHeight);
+          if (!force && height === lastReportedHeight) return;
+
+          lastReportedHeight = height;
+          post({ type: 'height', value: height });
+        }
+
+        // The web team's own analytics. It notes when the last line of the article text was first on screen, clear of
+        // the app's chrome, and tells its own server. Nothing of this reaches the app.
+        function lastTextLine() {
+          var paragraphs = document.querySelectorAll('.articlecomponent.text p');
+
+          return paragraphs.length ? paragraphs[paragraphs.length - 1] : null;
+        }
+
+        function checkEndOfText() {
+          if (!isReady || endOfTextSeenAt) return;
+
+          var last = lastTextLine();
+          if (!last) return;
+
+          var bounds = last.getBoundingClientRect();
+          var visibleTop = insetValue('--inset-top');
+          var visibleBottom = window.innerHeight - insetValue('--inset-bottom');
+
+          if (bounds.height <= 0 || bounds.bottom > visibleBottom + 1 || bounds.bottom < visibleTop) return;
+
+          endOfTextSeenAt = new Date();
+          render();
+
+          if (/^https?:$/.test(location.protocol)) {
+            fetch('/page-events', {
+              method: 'POST',
+              keepalive: true,
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ articleId: articleId, event: 'end-of-text-seen', document: documentId }),
+            }).catch(function () {});
+          }
+        }
+
+        function sendReady() {
+          readySent += 1;
+          post({ type: 'ready', protocol: PROTOCOL, page: 'article', articleId: articleId });
+          render();
+        }
+
+        function watchImage(image) {
+          image.addEventListener('load', render);
+          image.addEventListener('error', render);
+        }
+
+        function insertLateMedia() {
+          var image = document.createElement('img');
+          image.className = 'figure';
+          image.width = 800;
+          image.height = 600;
+          image.alt = 'Graphic';
+          watchImage(image);
+          image.src = config.media + 'map.svg';
+          document.getElementById('late-slot').appendChild(image);
+          render();
+        }
+
+        // Comes in a few seconds after the page, inside the article container, below the text.
+        function insertAskBox() {
+          var box = document.createElement('section');
+          box.className = 'ask';
+          box.setAttribute('aria-label', 'Ask the newsroom');
+          box.innerHTML =
+            '<span class="badge">Beta</span>' +
+            '<h3>Ask the newsroom</h3>' +
+            '<p>Questions about this article? Our assistant answers from the newsroom’s own reporting.</p>' +
+            '<button class="pill question" type="button">Summarise this article</button>' +
+            '<button class="pill question" type="button">What is the background?</button>' +
+            '<button class="pill question" type="button">What happens next?</button>' +
+            '<div class="input">Ask your own question…</div>';
+          document.getElementById('ask-slot').appendChild(box);
+        }
+
+        // Thumbnails are CSS backgrounds: they never count as page images, and without a network they stay blank.
+        function storyCard(story) {
+          var link = document.createElement('a');
+          link.className = 'card teaser';
+          link.href = '/article/' + story.id + '?ref=more';
+
+          var thumb = document.createElement('span');
+          thumb.className = 'thumb';
+          if (story.image) thumb.style.backgroundImage = 'url("' + encodeURI(story.image) + '")';
+          link.appendChild(thumb);
+
+          var body = document.createElement('span');
+          body.className = 'body';
+
+          if (story.kicker) {
+            var kicker = document.createElement('span');
+            kicker.className = 'kicker';
+            kicker.textContent = story.kicker;
+            body.appendChild(kicker);
+          }
+
+          var title = document.createElement('span');
+          title.className = 'title';
+          title.textContent = story.title;
+          body.appendChild(title);
+
+          var meta = document.createElement('span');
+          meta.className = 'meta';
+          meta.textContent = story.author || '';
+          if (story.minutes) meta.insertAdjacentHTML('beforeend', '<span class="time">' + CLOCK_ICON + story.minutes + ' min</span>');
+          body.appendChild(meta);
+
+          link.appendChild(body);
+
+          return link;
+        }
+
+        function loadMoreStories() {
+          if (moreLoading || moreBatches >= MORE_BATCHES) return;
+
+          moreLoading = true;
+          document.getElementById('more-status').textContent = 'Loading more stories…';
+
+          setTimeout(function () {
+            var list = document.getElementById('more-list');
+            var others = config.others && config.others.length ? config.others : [{ id: '1', title: 'Article' }];
+
+            for (var index = 0; index < MORE_BATCH; index += 1) {
+              list.appendChild(storyCard(others[(moreBatches * MORE_BATCH + index) % others.length]));
+            }
+
+            moreBatches += 1;
+            moreLoading = false;
+
+            var done = moreBatches >= MORE_BATCHES;
+            document.getElementById('more-status').textContent = done ? '' : 'Scroll for more';
+            document.getElementById('end').hidden = !done;
+          }, 400);
+        }
+
+        function nearTheBottom() {
+          return document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) < 900;
+        }
+
+        function onScroll() {
+          checkEndOfText();
+          if (nearTheBottom()) loadMoreStories();
+        }
+
+        // Stands in for the third-party scripts that share the message channel on a real page.
+        function startNoise() {
+          setTimeout(function () {
+            post({ type: 'height', value: 'auto' });
+          }, 1500);
+
+          setInterval(function () {
+            post('tp:heartbeat');
+            post({ type: 'ad:viewable', slot: 'top' });
+            post({ event: 'metrics', at: Date.now() });
+          }, 4000);
+        }
+
+        function becomeReady() {
+          isReady = true;
+          sendReady();
+          reportHeight(true);
+
+          new ResizeObserver(function () {
+            reportHeight(false);
+            checkEndOfText();
+          }).observe(document.body);
+
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', checkEndOfText);
+          // Layout also moves without any scrolling (images, the ask box, a font change).
+          setInterval(checkEndOfText, 500);
+
+          checkEndOfText();
+          loadMoreStories();
+
+          if (!config.short) setTimeout(insertLateMedia, 2000);
+          setTimeout(insertAskBox, 3000);
+          startNoise();
+        }
+
+        document.getElementById('title').textContent = config.title;
+        document.title = config.title;
+
+        // One page view per document, as soon as it starts.
+        webTrack('trackPageView', { pageUrl: location.href.split('#')[0], pageTitle: config.title, referrer: document.referrer });
+        trackTeaserTaps('a.card');
+
+        // A short article has no middle to jump to.
+        if (!document.getElementById('middle')) {
+          var middleLink = document.getElementById('contents-middle');
+          middleLink.parentNode.removeChild(middleLink);
+        }
+
+        if (config.kicker) {
+          var kicker = document.getElementById('kicker');
+          kicker.hidden = false;
+          kicker.textContent = config.kicker;
+        }
+
+        if (config.lead) {
+          var lead = document.getElementById('lead');
+          lead.hidden = false;
+          lead.textContent = config.lead;
+        }
+
+        var byline = document.getElementById('byline');
+        byline.querySelector('.authors').textContent = config.author || '';
+        // 2026-10-02 is shown the Swiss way, 02.10.2026.
+        byline.querySelector('time').textContent = (config.published || '').split('-').reverse().join('.');
+        byline.querySelector('time').setAttribute('datetime', config.published || '');
+
+        if (config.revision > 0) {
+          var revisionNote = document.getElementById('revision');
+          revisionNote.hidden = false;
+          revisionNote.textContent = 'Updated: this is revision ' + config.revision + ' of the article.';
+        }
+
+        try {
+          var origin = new URL(config.origin);
+          document.getElementById('partner').href =
+            origin.protocol + '//' + origin.hostname + '.example.org' + (origin.port ? ':' + origin.port : '') + '/article/9';
+        } catch (error) {
+          document.getElementById('partner').href = 'https://partner.example.org/article/9';
+        }
+
+        fillAdSlot();
+
+        Array.prototype.forEach.call(document.images, watchImage);
+
+        bookmarkButton.addEventListener('click', function () {
+          post(bookmarkTapMessage());
+        });
+
+        // An older teaser component: it announces the tap AND remains an ordinary link.
+        document.getElementById('teaser').addEventListener('click', function () {
+          post({ type: 'openArticle', path: this.getAttribute('href') });
+        });
+
+        document.getElementById('jump').addEventListener('click', function () {
+          location.hash = location.hash === '#related' ? 'summary' : 'related';
+        });
+
+        render();
+
+        if (config.ready === 'never') return;
+
+        var fixedDelay = typeof config.ready === 'number' ? config.ready : NaN;
+        var delay = fixedDelay >= 0 ? fixedDelay : 300 + Math.round(Math.random() * 900);
+
+        setTimeout(function () {
+          becomeReady();
+
+          if (config.ready === 'twice') setTimeout(sendReady, 400);
+        }, delay);
+      })();
+    </script>
+  </body>
+</html>
